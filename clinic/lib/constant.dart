@@ -12,7 +12,7 @@ const ResourceUrl = "$Host/resource/";
 
 const AboutUsUrl = "$Host/support/clinic/about.html";
 const FaqUrl = "$Host/support/clinic/faq.html";
-const TermUrl = "$Host/support/clinic/termcondition.html";
+const TermUrl = "$Host/support/clinic/term_condition.html";
 const ContactUrl = "$Host/support/clinic/contact.html";
 
 const int DefaultCreatableEnd = 3600 * (-18);
