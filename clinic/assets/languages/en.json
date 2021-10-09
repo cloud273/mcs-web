@@ -1,0 +1,23 @@
+{
+  "About_us": "About us",
+  "Clinic": "Clinic",
+  "Contact": "Contact",
+  "Doctor": "Doctor",
+  "Email": "Email",
+  "Error": "Error",
+  "Faq": "FAQs",
+  "Field_required": "Field required(*)",
+  "Invalid_email_format": "Invalid email format",
+  "List_active_appointment": "New appointments",
+  "List_history_appointment": "History appointments",
+  "Login": "Login",
+  "Logout": "Logout",
+  "Package": "Package",
+  "Password": "Password",
+  "Password_not_match": "Password doesn't match",
+  "Password_too_short": "Password is too short (At least 6 characters)",
+  "Schedule": "Schedule",
+  "Support": "Support",
+  "Term_condition": "Term & Condition",
+  "Wrong_login_information": "Invalid email and/or password"
+}

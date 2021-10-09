@@ -1,0 +1,23 @@
+{
+  "About_us": "Về chúng tôi",
+  "Clinic": "Phòng khám/Bệnh viện",
+  "Contact": "Liên hệ",
+  "Doctor": "Bác sĩ",
+  "Email": "Email",
+  "Error": "Lỗi",
+  "Faq": "Câu hỏi thường gặp",
+  "Field_required": "Bắt buộc(*)",
+  "Invalid_email_format": "Email không ",
+  "List_active_appointment": "Lịch khám",
+  "List_history_appointment": "Lịch sử khám",
+  "Login": "Đăng nhập",
+  "Logout": "Đăng xuất",
+  "Package": "Gói khám bệnh",
+  "Password": "Mật khẩu",
+  "Password_not_match": "Mật khẩu không trùng khớp",
+  "Password_too_short": "Mật khẩu quá ngắn (Ít nhất 6 ký tự)",
+  "Schedule": "Lịch khám",
+  "Support": "Hỗ trợ",
+  "Term_condition": "Điều khoản & điều kiện",
+  "Wrong_login_information": "Sai thông tin đăng nhập"
+}
