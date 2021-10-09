@@ -5,15 +5,15 @@ const int ApiResponseWithoutCode = -1;
 const int ApiUnknownErrorCode = -1002;
 
 // ------------ CHANGE IF NEED -------------//
-const Host = 'https://cloud273.com';
-const ApiUrl = "$Host/mcs/api/";
-const ImageUrl = "$Host/mcs/image/";
-const ResourceUrl = "$Host/mcs/resource/";
+const Host = 'https://mcs.cloud273.com/app';
+const ApiUrl = "$Host/api/";
+const ImageUrl = "$Host/image/";
+const ResourceUrl = "$Host/resource/";
 
-const AboutUsUrl = "$Host/mcs/support/patient/about.html";
-const FaqUrl = "$Host/mcs/support/patient/faq.html";
-const TermUrl = "$Host/mcs/support/patient/termcondition.html";
-const ContactUrl = "$Host/mcs/support/patient/contact.html";
+const AboutUsUrl = "$Host/support/clinic/about.html";
+const FaqUrl = "$Host/support/clinic/faq.html";
+const TermUrl = "$Host/support/clinic/termcondition.html";
+const ContactUrl = "$Host/support/clinic/contact.html";
 
 const int DefaultCreatableEnd = 3600 * (-18);
 const int DefaultAcceptableEnd = 3600 * (-6);

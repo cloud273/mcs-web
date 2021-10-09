@@ -24,7 +24,6 @@ class BaseApi extends JsonApi {
 
   @override
   Interceptor? interceptor() {
-    return null;
     return ApiInterceptor(
       requestBody: true,
       responseBody: true,
