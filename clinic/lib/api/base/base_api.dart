@@ -18,7 +18,7 @@ class BaseApi extends JsonApi {
   Map<String, String> headers() {
     var result = super.headers();
     result['app'] = AppInfo.instance.id + '|' + SystemInfo.appVersion;
-    result['os'] = currentDeviceOS.text;
+    result['os'] = currentDeviceOS.api;
     return result;
   }
 

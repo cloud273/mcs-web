@@ -8,16 +8,16 @@ class AppState extends _AppState {
   AppState._init();
   void initialize({
     required bool isLogged,
-    required AppPage initPage,
+    required AppMainPage initPage,
   }) {
     this.isLogged = isLogged;
-    this.currentPage = initPage;
+    this.currentMainPage = initPage;
   }
 }
 
 class _AppState = AppStateBase with _$AppState;
 
-enum AppPage {
+enum AppMainPage {
   activeAppointment,
   historyAppointment,
   doctorInformation,
@@ -35,7 +35,7 @@ abstract class AppStateBase with Store {
   bool isLogged = false;
 
   @observable
-  AppPage currentPage = AppPage.activeAppointment;
+  AppMainPage currentMainPage = AppMainPage.activeAppointment;
 
   @action
   void login() {
@@ -48,7 +48,7 @@ abstract class AppStateBase with Store {
   }
 
   @action
-  void setPage(AppPage page) {
-    currentPage = page;
+  void setMainPage(AppMainPage page) {
+    currentMainPage = page;
   }
 }

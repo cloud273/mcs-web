@@ -1,4 +1,5 @@
 import 'package:clinic/model/appointment.dart';
+import 'package:clinic/model/enum.dart';
 import 'package:clinic/util/localization.dart';
 import 'package:clinic/util/utility.dart';
 import 'package:flutter/cupertino.dart';
@@ -16,7 +17,7 @@ class HistoryAppointmentDetailPage extends StatelessWidget {
     final style = theme.textTheme.subtitle1;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Appointment detail'.localized),
+        title: Text('Appointment_detail'.localized),
       ),
       body: InkWell(
         child: Observer(
@@ -29,7 +30,7 @@ class HistoryAppointmentDetailPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    _appointment.specialtyCode,
+                    _appointment.specialty.name,
                     style: style,
                   ),
                   SizedBox(

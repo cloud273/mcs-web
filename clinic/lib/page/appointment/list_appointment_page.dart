@@ -1,10 +1,11 @@
 import 'dart:math';
 
 import 'package:clinic/api/clinic/clinic_list_appointment_api.dart';
+import 'package:clinic/model/app_state.dart';
 import 'package:clinic/model/appointment.dart';
+import 'package:clinic/model/extension.dart';
 import 'package:clinic/storage/other_storage.dart';
 import 'package:clinic/storage/user_storage.dart';
-import 'package:clinic/util/localization.dart';
 import 'package:clinic/view/appointment_cell.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -40,6 +41,9 @@ class _ListAppointmentPageState extends State<ListAppointmentPage> {
         to: to,
       ).run();
       setState(() {
+        appointments.sort((a, b) {
+          return a.begin.compareTo(b.begin);
+        });
         listAppointment = appointments;
       });
     } catch (e) {
@@ -57,34 +61,26 @@ class _ListAppointmentPageState extends State<ListAppointmentPage> {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
-    final double itemHeight = 200.0;
-    final double itemWidth = 500.0;
-    double offset = 20.0;
-    final crossAxisCount =
-        max((size.width - offset) ~/ (itemWidth + offset), 1);
-    offset = max(
-        (size.width - itemWidth * crossAxisCount) / (crossAxisCount + 1), 0);
+    // print(DateTime.parse("2021-10-12T06:00:00+00:00"));
     return Scaffold(
       appBar: AppBar(
-        title: Text('List_active_appointment'.localized),
+        title: Text(AppMainPage.activeAppointment.name),
       ),
-      body: GridView.builder(
-        clipBehavior: Clip.none,
-        shrinkWrap: true,
-        padding: EdgeInsets.all(offset),
-        controller: ScrollController(keepScrollOffset: true),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: crossAxisCount,
-          childAspectRatio: itemWidth / itemHeight,
-          mainAxisSpacing: offset,
-          crossAxisSpacing: offset,
+      body: Container(
+        margin: EdgeInsets.all(20),
+        child: ListView.builder(
+          itemCount: listAppointment.length + 1,
+          itemBuilder: (context, index) {
+            final appointment = index > 0 ? listAppointment[index - 1] : null;
+            final color = appointment == null
+                ? Color(0xFFEAEAEA)
+                : (index % 2 == 0 ? Color(0xFFF3F3F3) : Color(0xFFFFFFFF));
+            return AppointmentCell(
+              appointment: appointment,
+              color: color,
+            );
+          },
         ),
-        itemCount: listAppointment.length,
-        itemBuilder: (context, index) {
-          final appointment = listAppointment[index];
-          return AppointmentCell(appointment: appointment);
-        },
       ),
     );
   }

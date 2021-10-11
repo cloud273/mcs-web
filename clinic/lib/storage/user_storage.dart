@@ -1,6 +1,7 @@
 import 'package:clinic/model/app_state.dart';
 import 'package:clinic/model/clinic.dart';
 import 'package:clinic/model/clinic_user.dart';
+import 'package:clinic/model/enum.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserStorage {
@@ -23,7 +24,7 @@ class UserStorage {
     _token = _store.getString(_tokenKey);
     AppState.instance.initialize(
       isLogged: _token != null,
-      initPage: AppPage.activeAppointment,
+      initPage: AppMainPage.activeAppointment,
     );
   }
 
@@ -40,6 +41,8 @@ class UserStorage {
     _user = _user;
     _clinic = clinic;
   }
+
+  Language get language => Language.vietnamese;
 
   String? get token => _token;
 

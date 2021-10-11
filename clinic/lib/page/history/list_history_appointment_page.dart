@@ -1,9 +1,8 @@
-import 'dart:math';
-
 import 'package:clinic/api/clinic/clinic_list_appointment_api.dart';
+import 'package:clinic/model/app_state.dart';
 import 'package:clinic/model/appointment.dart';
+import 'package:clinic/model/extension.dart';
 import 'package:clinic/storage/user_storage.dart';
-import 'package:clinic/util/localization.dart';
 import 'package:clinic/view/history_appointment_cell.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +15,7 @@ class ListHistoryAppointmentPage extends StatefulWidget {
 
 class _ListHistoryAppointmentPageState
     extends State<ListHistoryAppointmentPage> {
-  List<Appointment> _appointments = [];
+  List<Appointment> listAppointment = [];
 
   void _loadInformation(String token) async {
     try {
@@ -31,7 +30,7 @@ class _ListHistoryAppointmentPageState
         to: to,
       ).run();
       setState(() {
-        _appointments = appointments;
+        listAppointment = appointments;
       });
     } catch (e) {
       if (e is int && e == 403) {
@@ -48,34 +47,25 @@ class _ListHistoryAppointmentPageState
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
-    final double itemHeight = 200.0;
-    final double itemWidth = 500.0;
-    double offset = 20.0;
-    final crossAxisCount =
-        max((size.width - offset) ~/ (itemWidth + offset), 1);
-    offset = max(
-        (size.width - itemWidth * crossAxisCount) / (crossAxisCount + 1), 0);
     return Scaffold(
       appBar: AppBar(
-        title: Text('List_history_appointment'.localized),
+        title: Text(AppMainPage.historyAppointment.name),
       ),
-      body: GridView.builder(
-        clipBehavior: Clip.none,
-        shrinkWrap: true,
-        padding: EdgeInsets.all(offset),
-        controller: ScrollController(keepScrollOffset: true),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: crossAxisCount,
-          childAspectRatio: itemWidth / itemHeight,
-          mainAxisSpacing: offset,
-          crossAxisSpacing: offset,
+      body: Container(
+        margin: EdgeInsets.all(20),
+        child: ListView.builder(
+          itemCount: listAppointment.length + 1,
+          itemBuilder: (context, index) {
+            final appointment = index > 0 ? listAppointment[index - 1] : null;
+            final color = appointment == null
+                ? Color(0xFFEAEAEA)
+                : (index % 2 == 0 ? Color(0xFFF3F3F3) : Color(0xFFFFFFFF));
+            return HistoryAppointmentCell(
+              appointment: appointment,
+              color: color,
+            );
+          },
         ),
-        itemCount: _appointments.length,
-        itemBuilder: (context, index) {
-          final appointment = _appointments[index];
-          return HistoryAppointmentCell(appointment: appointment);
-        },
       ),
     );
   }

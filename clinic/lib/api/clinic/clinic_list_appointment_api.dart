@@ -35,12 +35,12 @@ class ClinicListAppointmentApi extends TokenApi {
     if (statusTypes != null) {
       List<String> jsonStatus = [];
       statusTypes!.forEach((element) {
-        jsonStatus.add(element.text);
+        jsonStatus.add(element.api);
       });
       map['statusTypes'] = base64.encode(jsonEncode(jsonStatus).codeUnits);
     }
     if (type != null) {
-      map['type'] = type!.text;
+      map['type'] = type!.api;
     }
     return map;
   }

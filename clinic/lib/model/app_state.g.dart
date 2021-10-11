@@ -24,18 +24,18 @@ mixin _$AppState on AppStateBase, Store {
     });
   }
 
-  final _$currentPageAtom = Atom(name: 'AppStateBase.currentPage');
+  final _$currentMainPageAtom = Atom(name: 'AppStateBase.currentMainPage');
 
   @override
-  AppPage get currentPage {
-    _$currentPageAtom.reportRead();
-    return super.currentPage;
+  AppMainPage get currentMainPage {
+    _$currentMainPageAtom.reportRead();
+    return super.currentMainPage;
   }
 
   @override
-  set currentPage(AppPage value) {
-    _$currentPageAtom.reportWrite(value, super.currentPage, () {
-      super.currentPage = value;
+  set currentMainPage(AppMainPage value) {
+    _$currentMainPageAtom.reportWrite(value, super.currentMainPage, () {
+      super.currentMainPage = value;
     });
   }
 
@@ -64,11 +64,11 @@ mixin _$AppState on AppStateBase, Store {
   }
 
   @override
-  void setPage(AppPage page) {
+  void setMainPage(AppMainPage page) {
     final _$actionInfo = _$AppStateBaseActionController.startAction(
-        name: 'AppStateBase.setPage');
+        name: 'AppStateBase.setMainPage');
     try {
-      return super.setPage(page);
+      return super.setMainPage(page);
     } finally {
       _$AppStateBaseActionController.endAction(_$actionInfo);
     }
@@ -78,7 +78,7 @@ mixin _$AppState on AppStateBase, Store {
   String toString() {
     return '''
 isLogged: ${isLogged},
-currentPage: ${currentPage}
+currentMainPage: ${currentMainPage}
     ''';
   }
 }

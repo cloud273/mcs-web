@@ -1,32 +1,23 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'appointment.dart';
+part of 'apt_status.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Appointment _$AppointmentFromJson(Map<String, dynamic> json) {
-  return Appointment(
-    code: json['code'] as String,
-    order: json['order'] as int,
-    begin: DateTime.parse(json['begin'] as String),
-    specialtyCode: json['specialty'] as String,
-    type: _$enumDecode(_$PackageTypeEnumMap, json['type']),
-    visitTime: json['visitTime'] as int,
-    status: AptStatus.fromJson(json['status'] as Map<String, dynamic>),
+AptStatus _$AptStatusFromJson(Map<String, dynamic> json) {
+  return AptStatus(
+    by: _$enumDecode(_$UserTypeEnumMap, json['by']),
+    value: _$enumDecode(_$AptStatusTypeEnumMap, json['value']),
+    note: json['note'] as String?,
   );
 }
 
-Map<String, dynamic> _$AppointmentToJson(Appointment instance) =>
-    <String, dynamic>{
-      'code': instance.code,
-      'order': instance.order,
-      'begin': instance.begin.toIso8601String(),
-      'specialty': instance.specialtyCode,
-      'type': _$PackageTypeEnumMap[instance.type],
-      'visitTime': instance.visitTime,
-      'status': instance.status,
+Map<String, dynamic> _$AptStatusToJson(AptStatus instance) => <String, dynamic>{
+      'by': _$UserTypeEnumMap[instance.by],
+      'value': _$AptStatusTypeEnumMap[instance.value],
+      'note': instance.note,
     };
 
 K _$enumDecode<K, V>(
@@ -55,9 +46,20 @@ K _$enumDecode<K, V>(
   ).key;
 }
 
-const _$PackageTypeEnumMap = {
-  PackageType.classic: 'classic',
-  PackageType.telemed: 'telemed',
+const _$UserTypeEnumMap = {
+  UserType.patient: 'patient',
+  UserType.clinic: 'clinic',
+  UserType.doctor: 'doctor',
+  UserType.system: 'system',
+};
+
+const _$AptStatusTypeEnumMap = {
+  AptStatusType.created: 'created',
+  AptStatusType.accepted: 'accepted',
+  AptStatusType.started: 'started',
+  AptStatusType.rejected: 'rejected',
+  AptStatusType.cancelled: 'cancelled',
+  AptStatusType.finished: 'finished',
 };
 
 // **************************************************************************
@@ -66,26 +68,11 @@ const _$PackageTypeEnumMap = {
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
-mixin _$Appointment on AppointmentBase, Store {
-  final _$statusAtom = Atom(name: 'AppointmentBase.status');
-
-  @override
-  AptStatus? get status {
-    _$statusAtom.reportRead();
-    return super.status;
-  }
-
-  @override
-  set status(AptStatus? value) {
-    _$statusAtom.reportWrite(value, super.status, () {
-      super.status = value;
-    });
-  }
-
+mixin _$AptStatus on AptStatusBase, Store {
   @override
   String toString() {
     return '''
-status: ${status}
+
     ''';
   }
 }

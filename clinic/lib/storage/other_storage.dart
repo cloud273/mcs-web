@@ -113,4 +113,8 @@ class OtherStorage {
   int get beginableEnd => _beginableEnd;
 
   int get finishableEnd => _finishableEnd;
+
+  Specialty specialty(String code) {
+    return _specialties.firstWhere((element) => element.code == code);
+  }
 }

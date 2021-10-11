@@ -65,3 +65,10 @@ enum PackageType {
   classic,
   telemed,
 }
+
+enum UserType {
+  patient,
+  clinic,
+  doctor,
+  system,
+}

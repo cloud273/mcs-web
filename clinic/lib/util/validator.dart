@@ -8,36 +8,36 @@ class Validator {
 
   static String? validatorEmail(String? candidate) {
     if (candidate == null || candidate.isEmpty) {
-      return "Field_required".localized;
+      return "Required_asterisk".localized;
     } else {
       if (RegExp(emailRegExp).hasMatch(candidate)) {
         return null;
       } else {
-        return "Invalid_email_format".localized;
+        return "Invalid_email".localized;
       }
     }
   }
 
   static String? validatorPassword(String? candidate) {
     if (candidate == null || candidate.isEmpty) {
-      return "Field_required".localized;
+      return "Required_asterisk".localized;
     } else {
       if (candidate.length >= 6) {
         return null;
       } else {
-        return "Password_too_short".localized;
+        return "Too_short_password_message".localized;
       }
     }
   }
 
   static String? validatorRePassword(String? candidate, String password) {
     if (candidate == null || candidate.isEmpty) {
-      return "Field_required".localized;
+      return "Required_asterisk".localized;
     } else {
       if (candidate == password) {
         return null;
       } else {
-        return "Password_not_match".localized;
+        return "Mismatch_password".localized;
       }
     }
   }
@@ -47,7 +47,7 @@ class Validator {
       if (value == null ||
           ((value is Iterable || value is String || value is Map) &&
               value.isEmpty)) {
-        return errorText ?? 'Field_required'.localized;
+        return errorText ?? 'Required_asterisk'.localized;
       }
       return null;
     };

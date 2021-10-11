@@ -2,8 +2,9 @@ import 'dart:async';
 
 import 'package:clinic/model/app_info.dart';
 import 'package:clinic/model/app_state.dart';
-import 'package:clinic/page/login_page.dart';
-import 'package:clinic/page/main_page.dart';
+import 'package:clinic/model/enum.dart';
+import 'package:clinic/page/main/login_page.dart';
+import 'package:clinic/page/main/main_page.dart';
 import 'package:clinic/storage/other_storage.dart';
 import 'package:clinic/storage/user_storage.dart';
 import 'package:clinic/util/localization.dart';
@@ -23,7 +24,7 @@ void _main() async {
   await OtherStorage.instance.initialize();
   await CustomLocalizationDelegate.instance.initialize(
     supportedLanguages: {'en', 'vi'},
-    defaultLanguage: 'vi',
+    defaultLanguage: UserStorage.instance.language.api,
   );
   runZoned(
     () {

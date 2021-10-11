@@ -21,7 +21,7 @@ class AccountResetPasswordRequestApi extends BaseApi {
   @override
   Map<String, String> headers() {
     return {
-      'language': language.text,
+      'language': language.api,
     };
   }
 

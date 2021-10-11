@@ -55,7 +55,7 @@ class LoginPageState extends State<LoginPage> {
           builder: (context) {
             return AlertDialog(
               title: Text('Error'.localized),
-              content: Text('Wrong_login_information'.localized),
+              content: Text('Wrong_login_info'.localized),
             );
           },
         );

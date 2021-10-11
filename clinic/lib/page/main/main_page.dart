@@ -1,15 +1,15 @@
 import 'package:clinic/api/clinic/clinic_detail_api.dart';
 import 'package:clinic/api/clinic/clinic_user_detail_api.dart';
 import 'package:clinic/model/app_state.dart';
-import 'package:clinic/page/about_us_page.dart';
+import 'package:clinic/page/appointment/list_appointment_page.dart';
 import 'package:clinic/page/clinic_page.dart';
-import 'package:clinic/page/contact_page.dart';
-import 'package:clinic/page/faq_page.dart';
-import 'package:clinic/page/list_appointment_page.dart';
+import 'package:clinic/page/history/list_history_appointment_page.dart';
 import 'package:clinic/page/list_doctor_page.dart';
-import 'package:clinic/page/list_history_appointment_page.dart';
 import 'package:clinic/page/list_schedule_page.dart';
-import 'package:clinic/page/term_condition_page.dart';
+import 'package:clinic/page/web/about_us_page.dart';
+import 'package:clinic/page/web/contact_page.dart';
+import 'package:clinic/page/web/faq_page.dart';
+import 'package:clinic/page/web/term_condition_page.dart';
 import 'package:clinic/storage/user_storage.dart';
 import 'package:clinic/util/button.dart';
 import 'package:clinic/util/localization.dart';
@@ -24,16 +24,16 @@ class MainPage extends StatefulWidget {
 }
 
 class MainPageState extends State<MainPage> {
-  Map<AppPage, Widget> get _pageMap => {
-        AppPage.activeAppointment: ListAppointmentPage(),
-        AppPage.historyAppointment: ListHistoryAppointmentPage(),
-        AppPage.clinicInformation: ClinicPage(),
-        AppPage.doctorInformation: ListDoctorPage(),
-        AppPage.scheduleInformation: ListSchedulePage(),
-        AppPage.aboutUs: AboutUsPage(),
-        AppPage.faq: FaqPage(),
-        AppPage.termCondition: TermConditionPage(),
-        AppPage.contact: ContactPage(),
+  Map<AppMainPage, Widget> get _pageMap => {
+        AppMainPage.activeAppointment: ListAppointmentPage(),
+        AppMainPage.historyAppointment: ListHistoryAppointmentPage(),
+        AppMainPage.clinicInformation: ClinicPage(),
+        AppMainPage.doctorInformation: ListDoctorPage(),
+        AppMainPage.scheduleInformation: ListSchedulePage(),
+        AppMainPage.aboutUs: AboutUsPage(),
+        AppMainPage.faq: FaqPage(),
+        AppMainPage.termCondition: TermConditionPage(),
+        AppMainPage.contact: ContactPage(),
       };
 
   void _loadInformation(String token) async {
@@ -94,7 +94,7 @@ class MainPageState extends State<MainPage> {
         Expanded(
           child: Observer(
             builder: (context) {
-              return _pageMap[AppState.instance.currentPage]!;
+              return _pageMap[AppState.instance.currentMainPage]!;
             },
           ),
         ),

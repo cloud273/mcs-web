@@ -27,7 +27,7 @@ class AccountLoginApi extends BaseApi {
   Object body() {
     Map<String, dynamic> device = {
       'info': SystemInfo.deviceInfo,
-      'os': currentDeviceOS.text,
+      'os': currentDeviceOS.api,
       'production': true,
       'topic': AppInfo.instance.id,
       'token': deviceToken,

@@ -1,4 +1,5 @@
 import 'package:clinic/model/app_state.dart';
+import 'package:clinic/model/extension.dart';
 import 'package:clinic/storage/user_storage.dart';
 import 'package:clinic/util/button.dart';
 import 'package:clinic/util/localization.dart';
@@ -12,7 +13,7 @@ class MainDrawer extends StatelessWidget {
     return Drawer(
       child: Observer(
         builder: (context) {
-          final page = AppState.instance.currentPage;
+          final page = AppState.instance.currentMainPage;
           return ListView(
             padding: EdgeInsets.zero,
             children: <Widget>[
@@ -20,47 +21,39 @@ class MainDrawer extends StatelessWidget {
                 size: Size.fromHeight(SystemInfo.isMobileApp ? 84 : 15.0),
               ),
               _Item(
-                title: 'List_active_appointment'.localized,
-                thisPage: AppPage.activeAppointment,
+                thisPage: AppMainPage.activeAppointment,
                 currentPage: page,
               ),
               _Item(
-                title: 'List_history_appointment'.localized,
-                thisPage: AppPage.historyAppointment,
+                thisPage: AppMainPage.historyAppointment,
                 currentPage: page,
               ),
               Divider(
                 height: 30,
               ),
               _Item(
-                title: 'Doctor'.localized,
-                thisPage: AppPage.doctorInformation,
+                thisPage: AppMainPage.doctorInformation,
                 currentPage: page,
               ),
               _Item(
-                title: 'Schedule'.localized,
-                thisPage: AppPage.scheduleInformation,
+                thisPage: AppMainPage.scheduleInformation,
                 currentPage: page,
               ),
               Divider(),
               _Item(
-                title: 'About_us'.localized,
-                thisPage: AppPage.aboutUs,
+                thisPage: AppMainPage.aboutUs,
                 currentPage: page,
               ),
               _Item(
-                title: 'Faq'.localized,
-                thisPage: AppPage.faq,
+                thisPage: AppMainPage.faq,
                 currentPage: page,
               ),
               _Item(
-                title: 'Term_condition'.localized,
-                thisPage: AppPage.termCondition,
+                thisPage: AppMainPage.termCondition,
                 currentPage: page,
               ),
               _Item(
-                title: 'Contact'.localized,
-                thisPage: AppPage.contact,
+                thisPage: AppMainPage.contact,
                 currentPage: page,
               ),
               Divider(
@@ -87,14 +80,13 @@ class MainDrawer extends StatelessWidget {
 
 class _Item extends StatelessWidget {
   _Item({
-    required this.title,
     required this.thisPage,
     required this.currentPage,
   });
 
-  final String title;
-  final AppPage thisPage;
-  final AppPage currentPage;
+  String get title => thisPage.name;
+  final AppMainPage thisPage;
+  final AppMainPage currentPage;
 
   @override
   Widget build(BuildContext context) {
@@ -104,7 +96,7 @@ class _Item extends StatelessWidget {
       title: Text(title),
       onTap: () {
         if (currentPage != thisPage) {
-          AppState.instance.setPage(thisPage);
+          AppState.instance.setMainPage(thisPage);
         }
       },
     );

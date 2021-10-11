@@ -1,20 +1,24 @@
+import 'package:clinic/model/app_state.dart';
 import 'package:clinic/model/enum.dart';
+import 'package:clinic/model/specialty.dart';
+import 'package:clinic/storage/user_storage.dart';
+import 'package:clinic/util/localization.dart';
 
 extension AccountTypeExtension on AccountType {
   String get api {
     String result;
     switch (this) {
       case AccountType.admin:
-        result = "admin";
+        result = 'admin';
         break;
       case AccountType.clinic:
-        result = "clinic/account";
+        result = 'clinic/account';
         break;
       case AccountType.doctor:
-        result = "doctor";
+        result = 'doctor';
         break;
       default:
-        result = "patient";
+        result = 'patient';
         break;
     }
     return result;
@@ -22,26 +26,51 @@ extension AccountTypeExtension on AccountType {
 }
 
 extension AptStatusTypeExtension on AptStatusType {
+  String get api {
+    String result;
+    switch (this) {
+      case AptStatusType.created:
+        result = 'created';
+        break;
+      case AptStatusType.accepted:
+        result = 'accepted';
+        break;
+      case AptStatusType.started:
+        result = 'started';
+        break;
+      case AptStatusType.rejected:
+        result = 'rejected';
+        break;
+      case AptStatusType.cancelled:
+        result = 'cancelled';
+        break;
+      default:
+        result = 'finished';
+        break;
+    }
+    return result;
+  }
+
   String get text {
     String result;
     switch (this) {
       case AptStatusType.created:
-        result = "created";
+        result = 'Created_status'.localized;
         break;
       case AptStatusType.accepted:
-        result = "accepted";
+        result = 'Accepted_status'.localized;
         break;
       case AptStatusType.started:
-        result = "started";
+        result = 'Started_status'.localized;
         break;
       case AptStatusType.rejected:
-        result = "rejected";
+        result = 'Rejected_status'.localized;
         break;
       case AptStatusType.cancelled:
-        result = "cancelled";
+        result = 'Cancelled_status'.localized;
         break;
       default:
-        result = "finished";
+        result = 'Finished_status'.localized;
         break;
     }
     return result;
@@ -49,41 +78,83 @@ extension AptStatusTypeExtension on AptStatusType {
 }
 
 extension DeviceOSExtension on DeviceOS {
-  String get text {
+  String get api {
     String result;
     switch (this) {
       case DeviceOS.ios:
-        result = "ios";
+        result = 'ios';
         break;
       case DeviceOS.android:
-        result = "android";
+        result = 'android';
         break;
       case DeviceOS.mac:
-        result = "mac";
+        result = 'mac';
         break;
       case DeviceOS.window:
-        result = "window";
+        result = 'window';
         break;
       case DeviceOS.linux:
-        result = "linux";
+        result = 'linux';
         break;
       case DeviceOS.chrome:
-        result = "chrome";
+        result = 'chrome';
         break;
       case DeviceOS.safari:
-        result = "safari";
+        result = 'safari';
         break;
       case DeviceOS.firefox:
-        result = "firefox";
+        result = 'firefox';
         break;
       case DeviceOS.ie:
-        result = "ie";
+        result = 'ie';
         break;
       case DeviceOS.edge:
-        result = "edge";
+        result = 'edge';
         break;
       default:
-        result = "unsupported";
+        result = 'unsupported';
+        break;
+    }
+    return result;
+  }
+}
+
+extension AppPageExtension on AppMainPage {
+  String get name {
+    String result;
+    switch (this) {
+      case AppMainPage.activeAppointment:
+        result = "Book".localized;
+        break;
+      case AppMainPage.historyAppointment:
+        result = "History_appointment".localized;
+        break;
+      case AppMainPage.doctorInformation:
+        result = "Doctor".localized;
+        break;
+      case AppMainPage.clinicInformation:
+        result = "Clinic".localized;
+        break;
+      case AppMainPage.packageInformation:
+        result = "Package".localized;
+        break;
+      case AppMainPage.scheduleInformation:
+        result = "Schedule".localized;
+        break;
+      case AppMainPage.aboutUs:
+        result = 'About_us'.localized;
+        break;
+      case AppMainPage.faq:
+        result = 'FAQ'.localized;
+        break;
+      case AppMainPage.termCondition:
+        result = 'Term_condition'.localized;
+        break;
+      case AppMainPage.contact:
+        result = 'Contact'.localized;
+        break;
+      default:
+        result = '';
         break;
     }
     return result;
@@ -91,14 +162,14 @@ extension DeviceOSExtension on DeviceOS {
 }
 
 extension LanguageExtension on Language {
-  String get text {
+  String get api {
     String result;
     switch (this) {
       case Language.english:
-        result = "en";
+        result = 'en';
         break;
       default:
-        result = "vn";
+        result = 'vi';
         break;
     }
     return result;
@@ -118,16 +189,35 @@ extension NotifyTypeExtension on NotifyType {
 }
 
 extension PackageTypeExtension on PackageType {
+  String get api {
+    String result;
+    switch (this) {
+      case PackageType.classic:
+        result = 'classic';
+        break;
+      default:
+        result = 'telemed';
+        break;
+    }
+    return result;
+  }
+
   String get text {
     String result;
     switch (this) {
       case PackageType.classic:
-        result = "classic";
+        result = 'Exam_at_clinic'.localized;
         break;
       default:
-        result = "telemed";
+        result = 'Telemedicine'.localized;
         break;
     }
     return result;
+  }
+}
+
+extension SpecialtyExtension on Specialty {
+  String get name {
+    return nameMap[UserStorage.instance.language.api]!;
   }
 }
