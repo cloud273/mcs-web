@@ -80,9 +80,26 @@ class AppointmentCell extends StatelessWidget {
                 ),
                 offset,
                 Container(
-                  width: 175,
+                  width: 120,
                   child: Text(
                     appointment?.type.text ?? 'Package'.localized,
+                    style: style,
+                  ),
+                ),
+                offset,
+                Container(
+                  width: 175,
+                  child: Text(
+                    appointment?.patient.profile.fullName ??
+                        'Patient'.localized,
+                    style: style,
+                  ),
+                ),
+                offset,
+                Container(
+                  width: 175,
+                  child: Text(
+                    appointment?.doctor.profile.fullName ?? 'Doctor'.localized,
                     style: style,
                   ),
                 ),

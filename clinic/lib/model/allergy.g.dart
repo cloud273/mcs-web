@@ -1,20 +1,19 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'clinic_user.dart';
+part of 'allergy.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-ClinicUser _$ClinicUserFromJson(Map<String, dynamic> json) {
-  return ClinicUser(
-    username: json['username'] as String,
+Allergy _$AllergyFromJson(Map<String, dynamic> json) {
+  return Allergy(
+    name: json['name'] as String,
     description: json['description'] as String?,
   );
 }
 
-Map<String, dynamic> _$ClinicUserToJson(ClinicUser instance) =>
-    <String, dynamic>{
-      'username': instance.username,
+Map<String, dynamic> _$AllergyToJson(Allergy instance) => <String, dynamic>{
+      'name': instance.name,
       'description': instance.description,
     };

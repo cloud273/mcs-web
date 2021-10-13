@@ -1,20 +1,21 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'clinic_user.dart';
+part of 'surgery.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-ClinicUser _$ClinicUserFromJson(Map<String, dynamic> json) {
-  return ClinicUser(
-    username: json['username'] as String,
+Surgery _$SurgeryFromJson(Map<String, dynamic> json) {
+  return Surgery(
+    name: json['name'] as String,
+    date: DateTime.parse(json['date'] as String),
     description: json['description'] as String?,
   );
 }
 
-Map<String, dynamic> _$ClinicUserToJson(ClinicUser instance) =>
-    <String, dynamic>{
-      'username': instance.username,
+Map<String, dynamic> _$SurgeryToJson(Surgery instance) => <String, dynamic>{
+      'name': instance.name,
+      'date': instance.date.toIso8601String(),
       'description': instance.description,
     };

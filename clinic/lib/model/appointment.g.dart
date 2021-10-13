@@ -15,18 +15,36 @@ Appointment _$AppointmentFromJson(Map<String, dynamic> json) {
     type: _$enumDecode(_$PackageTypeEnumMap, json['type']),
     visitTime: json['visitTime'] as int,
     status: AptStatus.fromJson(json['status'] as Map<String, dynamic>),
+    doctor: Doctor.fromJson(json['doctorInfo'] as Map<String, dynamic>),
+    patient: Patient.fromJson(json['patientInfo'] as Map<String, dynamic>),
+    clinic: AptClinicInfo.fromJson(json['clinicInfo'] as Map<String, dynamic>),
+    symptoms: (json['symptoms'] as List<dynamic>?)
+        ?.map((e) => Symptom.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    allergies: (json['allergies'] as List<dynamic>?)
+        ?.map((e) => Allergy.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    surgeries: (json['surgeries'] as List<dynamic>?)
+        ?.map((e) => Surgery.fromJson(e as Map<String, dynamic>))
+        .toList(),
   );
 }
 
 Map<String, dynamic> _$AppointmentToJson(Appointment instance) =>
     <String, dynamic>{
+      'status': instance.status,
       'code': instance.code,
       'order': instance.order,
       'begin': instance.begin.toIso8601String(),
       'specialty': instance.specialtyCode,
       'type': _$PackageTypeEnumMap[instance.type],
       'visitTime': instance.visitTime,
-      'status': instance.status,
+      'doctorInfo': instance.doctor,
+      'patientInfo': instance.patient,
+      'clinicInfo': instance.clinic,
+      'symptoms': instance.symptoms,
+      'allergies': instance.allergies,
+      'surgeries': instance.surgeries,
     };
 
 K _$enumDecode<K, V>(

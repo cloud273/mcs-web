@@ -1,41 +1,28 @@
 import 'package:clinic/constant.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:mobx/mobx.dart';
 
 part 'specialty.g.dart';
 
 @JsonSerializable()
-class Specialty extends _Specialty {
+class Specialty {
   Specialty({
-    required String code,
-    required Map<String, String> nameMap,
-    String? imageName,
-  }) : super() {
-    this.code = code;
-    this.nameMap = nameMap;
-    this.imageName = imageName;
-  }
+    required this.code,
+    required this.nameMap,
+    required this.imageName,
+  });
+
+  String code;
+
+  @JsonKey(name: 'name')
+  Map<String, String> nameMap;
+
+  @JsonKey(name: 'image')
+  String imageName;
+
+  String? get image => '$ResourceUrl/$imageName';
 
   factory Specialty.fromJson(Map<String, dynamic> json) =>
       _$SpecialtyFromJson(json);
 
   Map<String, dynamic> toJson() => _$SpecialtyToJson(this);
-}
-
-class _Specialty = SpecialtyBase with _$Specialty;
-
-abstract class SpecialtyBase with Store {
-  @observable
-  String code = '';
-
-  @JsonKey(name: 'name')
-  @observable
-  Map<String, String> nameMap = {};
-
-  @JsonKey(name: 'image')
-  @observable
-  String? imageName;
-
-  @computed
-  String? get image => imageName != null ? '$ResourceUrl/$imageName' : null;
 }
