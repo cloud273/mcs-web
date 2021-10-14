@@ -72,3 +72,21 @@ enum UserType {
   doctor,
   system,
 }
+
+enum Currency {
+  vnd,
+  usd,
+}
+
+enum MedicationType {
+  highBP,
+  highCholesterol,
+  pregnant,
+  cancer,
+}
+
+enum Trilean {
+  yes,
+  no,
+  unknown,
+}

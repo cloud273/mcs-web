@@ -8,16 +8,20 @@ part of 'appointment.dart';
 
 Appointment _$AppointmentFromJson(Map<String, dynamic> json) {
   return Appointment(
+    id: json['id'] as int,
     code: json['code'] as String,
     order: json['order'] as int,
     begin: DateTime.parse(json['begin'] as String),
     specialtyCode: json['specialty'] as String,
     type: _$enumDecode(_$PackageTypeEnumMap, json['type']),
     visitTime: json['visitTime'] as int,
+    price: json['price'] == null
+        ? null
+        : Price.fromJson(json['price'] as Map<String, dynamic>),
     status: AptStatus.fromJson(json['status'] as Map<String, dynamic>),
     doctor: Doctor.fromJson(json['doctorInfo'] as Map<String, dynamic>),
     patient: Patient.fromJson(json['patientInfo'] as Map<String, dynamic>),
-    clinic: AptClinicInfo.fromJson(json['clinicInfo'] as Map<String, dynamic>),
+    clinic: Clinic.fromJson(json['clinicInfo'] as Map<String, dynamic>),
     symptoms: (json['symptoms'] as List<dynamic>?)
         ?.map((e) => Symptom.fromJson(e as Map<String, dynamic>))
         .toList(),
@@ -27,24 +31,32 @@ Appointment _$AppointmentFromJson(Map<String, dynamic> json) {
     surgeries: (json['surgeries'] as List<dynamic>?)
         ?.map((e) => Surgery.fromJson(e as Map<String, dynamic>))
         .toList(),
+    medications: (json['medications'] as List<dynamic>?)
+        ?.map((e) => Medication.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    description: json['description'] as String?,
   );
 }
 
 Map<String, dynamic> _$AppointmentToJson(Appointment instance) =>
     <String, dynamic>{
       'status': instance.status,
+      'id': instance.id,
       'code': instance.code,
       'order': instance.order,
       'begin': instance.begin.toIso8601String(),
       'specialty': instance.specialtyCode,
       'type': _$PackageTypeEnumMap[instance.type],
       'visitTime': instance.visitTime,
+      'price': instance.price,
       'doctorInfo': instance.doctor,
       'patientInfo': instance.patient,
       'clinicInfo': instance.clinic,
       'symptoms': instance.symptoms,
       'allergies': instance.allergies,
       'surgeries': instance.surgeries,
+      'medications': instance.medications,
+      'description': instance.description,
     };
 
 K _$enumDecode<K, V>(
@@ -88,13 +100,13 @@ mixin _$Appointment on AppointmentBase, Store {
   final _$statusAtom = Atom(name: 'AppointmentBase.status');
 
   @override
-  AptStatus? get status {
+  AptStatus get status {
     _$statusAtom.reportRead();
     return super.status;
   }
 
   @override
-  set status(AptStatus? value) {
+  set status(AptStatus value) {
     _$statusAtom.reportWrite(value, super.status, () {
       super.status = value;
     });

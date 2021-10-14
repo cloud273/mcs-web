@@ -9,30 +9,36 @@ part 'clinic.g.dart';
 @JsonSerializable()
 class Clinic {
   Clinic({
+    this.id,
     required this.name,
-    required this.email,
-    required this.phone,
-    required this.address,
+    this.email,
+    this.phone,
+    this.address,
     required this.imageName,
     this.workPhone,
     this.certificates,
+    this.description,
   });
+
+  int? id;
 
   String name;
 
-  String email;
+  String? email;
 
-  String phone;
+  String? phone;
 
   @JsonKey(name: 'workPhone')
   String? workPhone;
 
-  Address address;
+  Address? address;
 
   List<ClinicCertificate>? certificates;
 
   @JsonKey(name: 'image')
   String imageName;
+
+  String? description;
 
   String get image => '$ImageUrl/$imageName';
 

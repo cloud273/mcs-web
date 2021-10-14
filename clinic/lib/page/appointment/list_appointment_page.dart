@@ -1,9 +1,11 @@
 import 'dart:math';
 
+import 'package:clinic/api/clinic/clinic_appointment_detail_api.dart';
 import 'package:clinic/api/clinic/clinic_list_appointment_api.dart';
 import 'package:clinic/model/app_state.dart';
 import 'package:clinic/model/appointment.dart';
 import 'package:clinic/model/extension.dart';
+import 'package:clinic/page/appointment/appointment_detail_page.dart';
 import 'package:clinic/storage/other_storage.dart';
 import 'package:clinic/storage/user_storage.dart';
 import 'package:clinic/view/appointment_cell.dart';
@@ -18,7 +20,7 @@ class ListAppointmentPage extends StatefulWidget {
 class _ListAppointmentPageState extends State<ListAppointmentPage> {
   List<Appointment> listAppointment = [];
 
-  void _loadInformation(String token) async {
+  void _loadList() async {
     try {
       final today = DateTime.now();
       final from = today.add(
@@ -34,7 +36,7 @@ class _ListAppointmentPageState extends State<ListAppointmentPage> {
       );
       final to = today.add(Duration(days: 30));
       final appointments = await ClinicListAppointmentApi(
-        token: token,
+        token: UserStorage.instance.token!,
         type: null,
         statusTypes: null,
         from: from,
@@ -53,15 +55,35 @@ class _ListAppointmentPageState extends State<ListAppointmentPage> {
     }
   }
 
+  void _loadDetail(BuildContext context, int id) async {
+    try {
+      final appointment = await ClinicAppointmentDetailApi(
+        token: UserStorage.instance.token!,
+        id: id,
+      ).run();
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            content: AppointmentDetailPage(appointment),
+          );
+        },
+      );
+    } catch (e) {
+      if (e is int && e == 403) {
+        UserStorage.instance.logout();
+      } else {}
+    }
+  }
+
   @override
   void initState() {
-    _loadInformation(UserStorage.instance.token!);
+    _loadList();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    // print(DateTime.parse("2021-10-12T06:00:00+00:00"));
     return Scaffold(
       appBar: AppBar(
         title: Text(AppMainPage.activeAppointment.name),
@@ -78,6 +100,11 @@ class _ListAppointmentPageState extends State<ListAppointmentPage> {
             return AppointmentCell(
               appointment: appointment,
               color: color,
+              onTap: () {
+                if (appointment != null) {
+                  _loadDetail(context, appointment.id);
+                }
+              },
             );
           },
         ),

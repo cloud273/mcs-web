@@ -52,7 +52,7 @@ class ClinicListAppointmentApi extends TokenApi {
 
   Future<List<Appointment>> run() async {
     var response = await getResult();
-    if (response.code == 200 || response.code == 202) {
+    if (response.code == 200) {
       return (response.data as List)
           .map((e) => Appointment.fromJson(e as Map<String, dynamic>))
           .toList();

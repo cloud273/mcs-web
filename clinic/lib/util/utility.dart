@@ -7,9 +7,10 @@ class Utility {
 
   static String convertDateTime({
     required DateTime date,
-    String toFormat = 'MMM dd yyyy, hh:mm:ss a',
+    String toFormat = 'MMM, dd yyyy, hh:mm:ss a',
+    String? locale,
   }) {
-    return DateFormat(toFormat).format(date);
+    return DateFormat(toFormat, locale).format(date.toLocal());
   }
 
   static String? convertIso8601DateTimeString({

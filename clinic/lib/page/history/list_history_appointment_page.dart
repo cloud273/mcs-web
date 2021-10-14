@@ -2,8 +2,9 @@ import 'package:clinic/api/clinic/clinic_list_appointment_api.dart';
 import 'package:clinic/model/app_state.dart';
 import 'package:clinic/model/appointment.dart';
 import 'package:clinic/model/extension.dart';
+import 'package:clinic/page/history/history_appointment_detail_page.dart';
 import 'package:clinic/storage/user_storage.dart';
-import 'package:clinic/view/history_appointment_cell.dart';
+import 'package:clinic/view/appointment_cell.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -60,9 +61,20 @@ class _ListHistoryAppointmentPageState
             final color = appointment == null
                 ? Color(0xFFEAEAEA)
                 : (index % 2 == 0 ? Color(0xFFF3F3F3) : Color(0xFFFFFFFF));
-            return HistoryAppointmentCell(
+            return AppointmentCell(
               appointment: appointment,
               color: color,
+              onTap: () {
+                if (appointment != null) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          HistoryAppointmentDetailPage(appointment),
+                    ),
+                  );
+                }
+              },
             );
           },
         ),

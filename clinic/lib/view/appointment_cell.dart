@@ -1,6 +1,5 @@
 import 'package:clinic/model/appointment.dart';
 import 'package:clinic/model/enum.dart';
-import 'package:clinic/page/appointment/appointment_detail_page.dart';
 import 'package:clinic/util/localization.dart';
 import 'package:clinic/util/utility.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,22 +10,12 @@ class AppointmentCell extends StatelessWidget {
   AppointmentCell({
     this.appointment,
     this.color,
+    this.onTap,
   }) : super();
 
   final Appointment? appointment;
   final Color? color;
-
-  @protected
-  void onTap(BuildContext context) {
-    if (appointment != null) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => AppointmentDetailPage(appointment!),
-        ),
-      );
-    }
-  }
+  final Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -117,9 +106,7 @@ class AppointmentCell extends StatelessWidget {
           },
         ),
       ),
-      onTap: () {
-        onTap(context);
-      },
+      onTap: onTap,
     );
   }
 }

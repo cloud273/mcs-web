@@ -20,7 +20,7 @@ class ClinicDetailApi extends TokenApi {
 
   Future<Clinic> run() async {
     var response = await getResult();
-    if (response.code == 200 || response.code == 202) {
+    if (response.code == 200) {
       return Clinic.fromJson(response.data);
     } else {
       return Future.error(response.code);
