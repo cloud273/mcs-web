@@ -33,9 +33,11 @@ class TitleLabelWidget extends StatelessWidget {
             ),
           ),
           offset,
-          Text(
-            text,
-            style: style,
+          Expanded(
+            child: Text(
+              text,
+              style: style,
+            ),
           ),
         ],
       ),

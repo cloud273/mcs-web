@@ -42,10 +42,10 @@ class _ListAppointmentPageState extends State<ListAppointmentPage> {
         from: from,
         to: to,
       ).run();
+      appointments.sort((a, b) {
+        return a.begin.compareTo(b.begin);
+      });
       setState(() {
-        appointments.sort((a, b) {
-          return a.begin.compareTo(b.begin);
-        });
         listAppointment = appointments;
       });
     } catch (e) {
@@ -65,7 +65,18 @@ class _ListAppointmentPageState extends State<ListAppointmentPage> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            content: AppointmentDetailPage(appointment),
+            content: AppointmentDetailPage(
+              appointment,
+              onStatusChanged: (status) {
+                try {
+                  listAppointment
+                      .firstWhere((element) => element.id == appointment.id)
+                      .status = status;
+                } catch (e) {
+                  print('Appointment list have been updated.');
+                }
+              },
+            ),
           );
         },
       );

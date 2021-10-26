@@ -1,8 +1,12 @@
+import 'dart:math';
+
+import 'package:clinic/api/clinic/clinic_appointment_detail_api.dart';
 import 'package:clinic/api/clinic/clinic_list_appointment_api.dart';
 import 'package:clinic/model/app_state.dart';
 import 'package:clinic/model/appointment.dart';
 import 'package:clinic/model/extension.dart';
-import 'package:clinic/page/history/history_appointment_detail_page.dart';
+import 'package:clinic/page/appointment/appointment_detail_page.dart';
+import 'package:clinic/storage/other_storage.dart';
 import 'package:clinic/storage/user_storage.dart';
 import 'package:clinic/view/appointment_cell.dart';
 import 'package:flutter/cupertino.dart';
@@ -18,18 +22,31 @@ class _ListHistoryAppointmentPageState
     extends State<ListHistoryAppointmentPage> {
   List<Appointment> listAppointment = [];
 
-  void _loadInformation(String token) async {
+  void _loadList() async {
     try {
       final today = DateTime.now();
       final from = today.subtract(Duration(days: 365));
-      final to = today.subtract(Duration(days: 1));
+      final to = today.add(
+        Duration(
+          seconds: min(
+            min(
+              OtherStorage.instance.acceptableEnd,
+              OtherStorage.instance.rejectableEnd,
+            ),
+            OtherStorage.instance.beginableFrom,
+          ),
+        ),
+      );
       final appointments = await ClinicListAppointmentApi(
-        token: token,
+        token: UserStorage.instance.token!,
         type: null,
         statusTypes: null,
         from: from,
         to: to,
       ).run();
+      appointments.sort((a, b) {
+        return b.begin.compareTo(a.begin);
+      });
       setState(() {
         listAppointment = appointments;
       });
@@ -40,9 +57,30 @@ class _ListHistoryAppointmentPageState
     }
   }
 
+  void _loadDetail(BuildContext context, int id) async {
+    try {
+      final appointment = await ClinicAppointmentDetailApi(
+        token: UserStorage.instance.token!,
+        id: id,
+      ).run();
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            content: AppointmentDetailPage(appointment),
+          );
+        },
+      );
+    } catch (e) {
+      if (e is int && e == 403) {
+        UserStorage.instance.logout();
+      } else {}
+    }
+  }
+
   @override
   void initState() {
-    _loadInformation(UserStorage.instance.token!);
+    _loadList();
     super.initState();
   }
 
@@ -66,13 +104,7 @@ class _ListHistoryAppointmentPageState
               color: color,
               onTap: () {
                 if (appointment != null) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          HistoryAppointmentDetailPage(appointment),
-                    ),
-                  );
+                  _loadDetail(context, appointment.id);
                 }
               },
             );
