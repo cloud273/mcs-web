@@ -37,8 +37,9 @@ class ApiInterceptor extends Interceptor {
     _add('followRedirects', options.followRedirects);
     _add('connectTimeout', options.connectTimeout);
     _add('receiveTimeout', options.receiveTimeout);
-    _add('extra', options.extra.toString());
     if (requestHeader) {
+      _addMessage('extra:');
+      options.extra.forEach((key, v) => _add('$key', v));
       _addMessage('headers:');
       options.headers.forEach((key, v) => _add('$key', v));
     }
@@ -69,11 +70,13 @@ class ApiInterceptor extends Interceptor {
     ResponseInterceptorHandler handler,
   ) async {
     _addMessage('*** Response ***');
+    _add('statusCode', response.statusCode);
+    if (response.isRedirect == true) {
+      _add('redirect', response.realUri);
+    }
     if (responseHeader) {
-      _add('statusCode', response.statusCode);
-      if (response.isRedirect == true) {
-        _add('redirect', response.realUri);
-      }
+      _addMessage('extra:');
+      response.extra.forEach((key, v) => _add('$key', v.join(',')));
       _addMessage('headers:');
       response.headers.forEach((key, v) => _add('$key', v.join(',')));
     }

@@ -123,7 +123,7 @@ class LoginPageState extends State<LoginPage> {
                   Row(
                     children: <Widget>[
                       Expanded(
-                        child: Button.submit(
+                        child: Button.create(
                           text: "Login".localized,
                           onPressed: () {
                             if (_validateInputs()) {

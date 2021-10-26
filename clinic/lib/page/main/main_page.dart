@@ -53,7 +53,7 @@ class MainPageState extends State<MainPage> {
               title: Text('Error'.localized),
               content: Text('Error occur, please retry'.localized),
               actions: <Widget>[
-                Button.submit(
+                Button.create(
                   text: 'Retry'.localized,
                   onPressed: () {
                     _loadInformation(token);

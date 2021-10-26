@@ -63,7 +63,7 @@ class MainDrawer extends StatelessWidget {
                 height: 20,
               ),
               ListTile(
-                title: Button.submit(
+                title: Button.create(
                   text: "Logout".localized,
                   onPressed: () {
                     UserStorage.instance.logout();

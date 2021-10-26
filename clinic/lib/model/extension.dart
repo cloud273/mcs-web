@@ -1,8 +1,12 @@
+import 'package:clinic/model/allergy.dart';
 import 'package:clinic/model/app_state.dart';
 import 'package:clinic/model/enum.dart';
 import 'package:clinic/model/specialty.dart';
+import 'package:clinic/model/surgery.dart';
+import 'package:clinic/model/symptom.dart';
 import 'package:clinic/storage/user_storage.dart';
 import 'package:clinic/util/localization.dart';
+import 'package:clinic/util/utility.dart';
 
 extension AccountTypeExtension on AccountType {
   String get api {
@@ -212,6 +216,65 @@ extension PackageTypeExtension on PackageType {
         result = 'Telemedicine'.localized;
         break;
     }
+    return result;
+  }
+}
+
+extension GenderExtension on Gender {
+  String get text {
+    String result;
+    switch (this) {
+      case Gender.male:
+        result = 'Male'.localized;
+        break;
+      case Gender.female:
+        result = 'Female'.localized;
+        break;
+      default:
+        result = 'Unknown'.localized;
+        break;
+    }
+    return result;
+  }
+}
+
+extension ListSymptomExtension on List<Symptom> {
+  String get text {
+    String result = '';
+    this.forEach((element) {
+      if (result.isNotEmpty) result += '\n';
+      result += element.name + ' - ' + element.note;
+    });
+
+    return result;
+  }
+}
+
+extension ListAlleryExtension on List<Allergy> {
+  String get text {
+    String result = '';
+    this.forEach((element) {
+      if (result.isNotEmpty) result += '\n';
+      result += element.name;
+      if (element.description != null) {
+        result += ' - ' + element.description!;
+      }
+    });
+    return result;
+  }
+}
+
+extension ListSurgeryExtension on List<Surgery> {
+  String get text {
+    String result = '';
+    this.forEach((element) {
+      if (result.isNotEmpty) result += '\n';
+      result +=
+          element.name + ' - ' + Utility.convertDateTime(date: element.date);
+      if (element.description != null) {
+        result += ' - ' + element.description!;
+      }
+    });
     return result;
   }
 }
