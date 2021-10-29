@@ -17,6 +17,7 @@ class ClinicUserDetailApi extends TokenApi {
     return "clinic/account";
   }
 
+
   Future<ClinicUser> run() async {
     var response = await getResult();
     if (response.code == 200) {

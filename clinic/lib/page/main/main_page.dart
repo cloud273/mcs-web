@@ -42,8 +42,7 @@ class MainPageState extends State<MainPage> {
       final user = await ClinicUserDetailApi(token: token).run();
       await UserStorage.instance.setClinicAndUser(clinic: clinic, user: user);
     } catch (e) {
-      print(e);
-      if (e is int && e == 403) {
+      if (e == 403) {
         UserStorage.instance.logout();
       } else {
         showDialog(

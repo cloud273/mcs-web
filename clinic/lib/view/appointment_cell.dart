@@ -1,7 +1,7 @@
 import 'package:clinic/model/appointment.dart';
 import 'package:clinic/model/enum.dart';
-import 'package:clinic/util/localization.dart';
 import 'package:clinic/util/converter.dart';
+import 'package:clinic/util/localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -54,7 +54,7 @@ class AppointmentCell extends StatelessWidget {
         Container(
           width: 100,
           child: Text(
-            appointment?.specialty.name ?? 'Specialty'.localized,
+            appointment?.specialty.text ?? 'Specialty'.localized,
             style: style,
           ),
         ),

@@ -8,6 +8,7 @@ import 'package:clinic/model/extension.dart';
 import 'package:clinic/page/common/appointment_detail_page.dart';
 import 'package:clinic/storage/other_storage.dart';
 import 'package:clinic/storage/user_storage.dart';
+import 'package:clinic/util/alert.dart';
 import 'package:clinic/view/appointment_cell.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -64,26 +65,26 @@ class _ListAppointmentPageState extends State<ListAppointmentPage> {
       showDialog(
         context: context,
         builder: (context) {
-          return AlertDialog(
-            content: AppointmentDetailPage(
-              appointment,
-              onStatusChanged: (status) {
-                try {
-                  listAppointment
-                      .firstWhere((element) => element.id == appointment.id)
-                      .status = status;
-                } catch (e) {
-                  print('Appointment list have been updated.');
-                }
-              },
-            ),
+          return AppointmentDetailPage(
+            appointment,
+            onStatusChanged: (status) {
+              try {
+                listAppointment
+                    .firstWhere((element) => element.id == appointment.id)
+                    .status = status;
+              } catch (e) {
+                print('Appointment list have been updated.');
+              }
+            },
           );
         },
       );
     } catch (e) {
-      if (e is int && e == 403) {
+      if (e == 403) {
         UserStorage.instance.logout();
-      } else {}
+      } else {
+        HttpAlert.showError(context, e);
+      }
     }
   }
 
@@ -97,7 +98,7 @@ class _ListAppointmentPageState extends State<ListAppointmentPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppMainPage.activeAppointment.name),
+        title: Text(AppMainPage.activeAppointment.text),
       ),
       body: Container(
         margin: EdgeInsets.all(20),

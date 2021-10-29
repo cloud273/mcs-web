@@ -1,6 +1,7 @@
 import 'package:clinic/api/account/account_login_api.dart';
 import 'package:clinic/model/enum.dart';
 import 'package:clinic/storage/user_storage.dart';
+import 'package:clinic/util/alert.dart';
 import 'package:clinic/util/button.dart';
 import 'package:clinic/util/localization.dart';
 import 'package:clinic/util/validator.dart';
@@ -60,15 +61,7 @@ class LoginPageState extends State<LoginPage> {
           },
         );
       } else {
-        showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              title: Text('Error'.localized),
-              content: Text(error.toString()),
-            );
-          },
-        );
+        HttpAlert.showError(context, error);
       }
     }
   }

@@ -5,7 +5,7 @@ import 'package:clinic/page/base/web_info_page.dart';
 
 class ContactPage extends WebInfoPage {
   @override
-  String get title => AppMainPage.contact.name;
+  String get title => AppMainPage.contact.text;
 
   @override
   String get url => ContactUrl;

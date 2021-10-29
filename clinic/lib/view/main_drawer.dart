@@ -84,7 +84,7 @@ class _Item extends StatelessWidget {
     required this.currentPage,
   });
 
-  String get title => thisPage.name;
+  String get title => thisPage.text;
   final AppMainPage thisPage;
   final AppMainPage currentPage;
 

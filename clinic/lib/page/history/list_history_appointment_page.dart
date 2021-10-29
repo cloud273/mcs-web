@@ -8,6 +8,7 @@ import 'package:clinic/model/extension.dart';
 import 'package:clinic/page/common/appointment_detail_page.dart';
 import 'package:clinic/storage/other_storage.dart';
 import 'package:clinic/storage/user_storage.dart';
+import 'package:clinic/util/alert.dart';
 import 'package:clinic/view/appointment_cell.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -66,15 +67,15 @@ class _ListHistoryAppointmentPageState
       showDialog(
         context: context,
         builder: (context) {
-          return AlertDialog(
-            content: AppointmentDetailPage(appointment),
-          );
+          return AppointmentDetailPage(appointment);
         },
       );
     } catch (e) {
-      if (e is int && e == 403) {
+      if (e == 403) {
         UserStorage.instance.logout();
-      } else {}
+      } else {
+        HttpAlert.showError(context, e);
+      }
     }
   }
 
@@ -88,7 +89,7 @@ class _ListHistoryAppointmentPageState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppMainPage.historyAppointment.name),
+        title: Text(AppMainPage.historyAppointment.text),
       ),
       body: Container(
         margin: EdgeInsets.all(20),

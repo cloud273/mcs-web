@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:sprintf/sprintf.dart';
 
 import 'localization.dart';
 
@@ -42,14 +42,19 @@ class Validator {
     }
   }
 
-  static FormFieldValidator required({String? errorText}) {
-    return (value) {
-      if (value == null ||
-          ((value is Iterable || value is String || value is Map) &&
-              value.isEmpty)) {
-        return errorText ?? 'Required_asterisk'.localized;
+  static String? length(String? candidate, {int? minLength, int? maxLength,}) {
+    final textLength = candidate?.length ?? 0;
+    if (minLength != null && minLength > 0) {
+      if (textLength == 0) {
+        return "Required_asterisk".localized;
+      } else if (textLength < minLength){
+        return sprintf("Too_short_message".localized, [minLength]);
       }
+    } else if (maxLength != null && textLength > maxLength) {
+      return sprintf("Too_long_message".localized, [maxLength]);
+    } else {
       return null;
-    };
+    }
   }
+
 }

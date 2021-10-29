@@ -113,6 +113,17 @@ class Alert {
 }
 
 class HttpAlert {
+  static showError(BuildContext context, dynamic error) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          content: Text('Error: $error'),
+        );
+      },
+    );
+  }
+
   static showTimeout(BuildContext context) {
     Alert.dismissButtonShow(
       context,

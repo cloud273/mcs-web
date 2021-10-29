@@ -34,7 +34,7 @@ dependencies:
   mobx: ^2.0.2
   flutter_mobx: ^2.0.2
   webviewx: ^0.2.1
-
+  sprintf: ^6.0.0
   # mobile only
   flutter_mailer: ^2.0.0
   image_picker: ^0.8.4+3

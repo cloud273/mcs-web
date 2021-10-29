@@ -5,8 +5,8 @@ import 'package:clinic/model/specialty.dart';
 import 'package:clinic/model/surgery.dart';
 import 'package:clinic/model/symptom.dart';
 import 'package:clinic/storage/user_storage.dart';
-import 'package:clinic/util/localization.dart';
 import 'package:clinic/util/converter.dart';
+import 'package:clinic/util/localization.dart';
 
 extension AccountTypeExtension on AccountType {
   String get api {
@@ -23,6 +23,48 @@ extension AccountTypeExtension on AccountType {
         break;
       default:
         result = 'patient';
+        break;
+    }
+    return result;
+  }
+}
+
+extension AppPageExtension on AppMainPage {
+  String get text {
+    String result;
+    switch (this) {
+      case AppMainPage.activeAppointment:
+        result = "Book".localized;
+        break;
+      case AppMainPage.historyAppointment:
+        result = "History_appointment".localized;
+        break;
+      case AppMainPage.doctorInformation:
+        result = "Doctor".localized;
+        break;
+      case AppMainPage.clinicInformation:
+        result = "Clinic".localized;
+        break;
+      case AppMainPage.packageInformation:
+        result = "Package".localized;
+        break;
+      case AppMainPage.scheduleInformation:
+        result = "Schedule".localized;
+        break;
+      case AppMainPage.aboutUs:
+        result = 'About_us'.localized;
+        break;
+      case AppMainPage.faq:
+        result = 'FAQ'.localized;
+        break;
+      case AppMainPage.termCondition:
+        result = 'Term_condition'.localized;
+        break;
+      case AppMainPage.contact:
+        result = 'Contact'.localized;
+        break;
+      default:
+        result = '';
         break;
     }
     return result;
@@ -123,42 +165,18 @@ extension DeviceOSExtension on DeviceOS {
   }
 }
 
-extension AppPageExtension on AppMainPage {
-  String get name {
+extension GenderExtension on Gender {
+  String get text {
     String result;
     switch (this) {
-      case AppMainPage.activeAppointment:
-        result = "Book".localized;
+      case Gender.male:
+        result = 'Male'.localized;
         break;
-      case AppMainPage.historyAppointment:
-        result = "History_appointment".localized;
-        break;
-      case AppMainPage.doctorInformation:
-        result = "Doctor".localized;
-        break;
-      case AppMainPage.clinicInformation:
-        result = "Clinic".localized;
-        break;
-      case AppMainPage.packageInformation:
-        result = "Package".localized;
-        break;
-      case AppMainPage.scheduleInformation:
-        result = "Schedule".localized;
-        break;
-      case AppMainPage.aboutUs:
-        result = 'About_us'.localized;
-        break;
-      case AppMainPage.faq:
-        result = 'FAQ'.localized;
-        break;
-      case AppMainPage.termCondition:
-        result = 'Term_condition'.localized;
-        break;
-      case AppMainPage.contact:
-        result = 'Contact'.localized;
+      case Gender.female:
+        result = 'Female'.localized;
         break;
       default:
-        result = '';
+        result = 'Unknown'.localized;
         break;
     }
     return result;
@@ -176,6 +194,48 @@ extension LanguageExtension on Language {
         result = 'vi';
         break;
     }
+    return result;
+  }
+}
+
+extension ListAlleryExtension on List<Allergy> {
+  String get text {
+    String result = '';
+    this.forEach((element) {
+      if (result.isNotEmpty) result += '\n';
+      result += element.name;
+      if (element.description?.isNotEmpty ?? false) {
+        result += ' / ' + element.description!;
+      }
+    });
+    return result;
+  }
+}
+
+extension ListSurgeryExtension on List<Surgery> {
+  String get text {
+    String result = '';
+    this.forEach((element) {
+      if (result.isNotEmpty) result += '\n';
+      result += element.name +
+          ' / ' +
+          Converter.dateTimeToString(date: element.date, toFormat: 'MMM yyyy');
+      if (element.description?.isNotEmpty ?? false) {
+        result += ' / ' + element.description!;
+      }
+    });
+    return result;
+  }
+}
+
+extension ListSymptomExtension on List<Symptom> {
+  String get text {
+    String result = '';
+    this.forEach((element) {
+      if (result.isNotEmpty) result += '\n';
+      result += element.name + ' / ' + element.note;
+    });
+
     return result;
   }
 }
@@ -220,67 +280,29 @@ extension PackageTypeExtension on PackageType {
   }
 }
 
-extension GenderExtension on Gender {
+extension SpecialtyExtension on Specialty {
+  String get text {
+    return nameMap[UserStorage.instance.language.api]!;
+  }
+}
+
+extension UserTypeExtension on UserType {
   String get text {
     String result;
     switch (this) {
-      case Gender.male:
-        result = 'Male'.localized;
+      case UserType.clinic:
+        result = 'Clinic'.localized;
         break;
-      case Gender.female:
-        result = 'Female'.localized;
+      case UserType.doctor:
+        result = 'Doctor'.localized;
+        break;
+      case UserType.patient:
+        result = 'Patient'.localized;
         break;
       default:
-        result = 'Unknown'.localized;
+        result = 'System'.localized;
         break;
     }
     return result;
-  }
-}
-
-extension ListSymptomExtension on List<Symptom> {
-  String get text {
-    String result = '';
-    this.forEach((element) {
-      if (result.isNotEmpty) result += '\n';
-      result += element.name + ' / ' + element.note;
-    });
-
-    return result;
-  }
-}
-
-extension ListAlleryExtension on List<Allergy> {
-  String get text {
-    String result = '';
-    this.forEach((element) {
-      if (result.isNotEmpty) result += '\n';
-      result += element.name;
-      if (element.description?.isNotEmpty ?? false) {
-        result += ' / ' + element.description!;
-      }
-    });
-    return result;
-  }
-}
-
-extension ListSurgeryExtension on List<Surgery> {
-  String get text {
-    String result = '';
-    this.forEach((element) {
-      if (result.isNotEmpty) result += '\n';
-      result +=
-          element.name + ' / ' + Converter.dateTimeToString(date: element.date, toFormat: 'MMM yyyy');
-      if (element.description?.isNotEmpty ?? false) {
-        result += ' / ' + element.description!;
-      }
-    });
-    return result;
-  }
-}
-
-extension SpecialtyExtension on Specialty {
-  String get name {
-    return nameMap[UserStorage.instance.language.api]!;
   }
 }
