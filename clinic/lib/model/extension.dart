@@ -6,7 +6,7 @@ import 'package:clinic/model/surgery.dart';
 import 'package:clinic/model/symptom.dart';
 import 'package:clinic/storage/user_storage.dart';
 import 'package:clinic/util/localization.dart';
-import 'package:clinic/util/utility.dart';
+import 'package:clinic/util/converter.dart';
 
 extension AccountTypeExtension on AccountType {
   String get api {
@@ -243,7 +243,7 @@ extension ListSymptomExtension on List<Symptom> {
     String result = '';
     this.forEach((element) {
       if (result.isNotEmpty) result += '\n';
-      result += element.name + ' - ' + element.note;
+      result += element.name + ' / ' + element.note;
     });
 
     return result;
@@ -256,8 +256,8 @@ extension ListAlleryExtension on List<Allergy> {
     this.forEach((element) {
       if (result.isNotEmpty) result += '\n';
       result += element.name;
-      if (element.description != null) {
-        result += ' - ' + element.description!;
+      if (element.description?.isNotEmpty ?? false) {
+        result += ' / ' + element.description!;
       }
     });
     return result;
@@ -270,9 +270,9 @@ extension ListSurgeryExtension on List<Surgery> {
     this.forEach((element) {
       if (result.isNotEmpty) result += '\n';
       result +=
-          element.name + ' - ' + Utility.convertDateTime(date: element.date);
-      if (element.description != null) {
-        result += ' - ' + element.description!;
+          element.name + ' / ' + Converter.dateTimeToString(date: element.date, toFormat: 'MMM yyyy');
+      if (element.description?.isNotEmpty ?? false) {
+        result += ' / ' + element.description!;
       }
     });
     return result;

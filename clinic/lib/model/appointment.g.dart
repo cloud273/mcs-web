@@ -6,37 +6,35 @@ part of 'appointment.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Appointment _$AppointmentFromJson(Map<String, dynamic> json) {
-  return Appointment(
-    id: json['id'] as int,
-    code: json['code'] as String,
-    order: json['order'] as int,
-    begin: DateTime.parse(json['begin'] as String),
-    specialtyCode: json['specialty'] as String,
-    type: _$enumDecode(_$PackageTypeEnumMap, json['type']),
-    visitTime: json['visitTime'] as int,
-    price: json['price'] == null
-        ? null
-        : Price.fromJson(json['price'] as Map<String, dynamic>),
-    status: AptStatus.fromJson(json['status'] as Map<String, dynamic>),
-    doctor: Doctor.fromJson(json['doctorInfo'] as Map<String, dynamic>),
-    patient: Patient.fromJson(json['patientInfo'] as Map<String, dynamic>),
-    clinic: Clinic.fromJson(json['clinicInfo'] as Map<String, dynamic>),
-    symptoms: (json['symptoms'] as List<dynamic>?)
-        ?.map((e) => Symptom.fromJson(e as Map<String, dynamic>))
-        .toList(),
-    allergies: (json['allergies'] as List<dynamic>?)
-        ?.map((e) => Allergy.fromJson(e as Map<String, dynamic>))
-        .toList(),
-    surgeries: (json['surgeries'] as List<dynamic>?)
-        ?.map((e) => Surgery.fromJson(e as Map<String, dynamic>))
-        .toList(),
-    medications: (json['medications'] as List<dynamic>?)
-        ?.map((e) => Medication.fromJson(e as Map<String, dynamic>))
-        .toList(),
-    description: json['description'] as String?,
-  );
-}
+Appointment _$AppointmentFromJson(Map<String, dynamic> json) => Appointment(
+      id: json['id'] as int,
+      code: json['code'] as String,
+      order: json['order'] as int,
+      begin: DateTime.parse(json['begin'] as String),
+      specialtyCode: json['specialty'] as String,
+      type: $enumDecode(_$PackageTypeEnumMap, json['type']),
+      visitTime: json['visitTime'] as int,
+      price: json['price'] == null
+          ? null
+          : Price.fromJson(json['price'] as Map<String, dynamic>),
+      status: AptStatus.fromJson(json['status'] as Map<String, dynamic>),
+      doctor: Doctor.fromJson(json['doctorInfo'] as Map<String, dynamic>),
+      patient: Patient.fromJson(json['patientInfo'] as Map<String, dynamic>),
+      clinic: Clinic.fromJson(json['clinicInfo'] as Map<String, dynamic>),
+      symptoms: (json['symptoms'] as List<dynamic>?)
+          ?.map((e) => Symptom.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      allergies: (json['allergies'] as List<dynamic>?)
+          ?.map((e) => Allergy.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      surgeries: (json['surgeries'] as List<dynamic>?)
+          ?.map((e) => Surgery.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      medications: (json['medications'] as List<dynamic>?)
+          ?.map((e) => Medication.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      description: json['description'] as String?,
+    );
 
 Map<String, dynamic> _$AppointmentToJson(Appointment instance) =>
     <String, dynamic>{
@@ -58,32 +56,6 @@ Map<String, dynamic> _$AppointmentToJson(Appointment instance) =>
       'medications': instance.medications,
       'description': instance.description,
     };
-
-K _$enumDecode<K, V>(
-  Map<K, V> enumValues,
-  Object? source, {
-  K? unknownValue,
-}) {
-  if (source == null) {
-    throw ArgumentError(
-      'A value must be provided. Supported values: '
-      '${enumValues.values.join(', ')}',
-    );
-  }
-
-  return enumValues.entries.singleWhere(
-    (e) => e.value == source,
-    orElse: () {
-      if (unknownValue == null) {
-        throw ArgumentError(
-          '`$source` is not one of the supported values: '
-          '${enumValues.values.join(', ')}',
-        );
-      }
-      return MapEntry(unknownValue, enumValues.values.first);
-    },
-  ).key;
-}
 
 const _$PackageTypeEnumMap = {
   PackageType.classic: 'classic',

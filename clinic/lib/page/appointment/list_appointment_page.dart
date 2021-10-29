@@ -5,7 +5,7 @@ import 'package:clinic/api/clinic/clinic_list_appointment_api.dart';
 import 'package:clinic/model/app_state.dart';
 import 'package:clinic/model/appointment.dart';
 import 'package:clinic/model/extension.dart';
-import 'package:clinic/page/appointment/appointment_detail_page.dart';
+import 'package:clinic/page/common/appointment_detail_page.dart';
 import 'package:clinic/storage/other_storage.dart';
 import 'package:clinic/storage/user_storage.dart';
 import 'package:clinic/view/appointment_cell.dart';

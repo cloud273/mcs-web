@@ -6,19 +6,18 @@ part of 'doctor_certificate.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-DoctorCertificate _$DoctorCertificateFromJson(Map<String, dynamic> json) {
-  return DoctorCertificate(
-    code: json['code'] as String,
-    name: json['name'] as String,
-    issuer: json['issuer'] as String,
-    issueDate: DateTime.parse(json['issueDate'] as String),
-    expDate: json['expDate'] == null
-        ? null
-        : DateTime.parse(json['expDate'] as String),
-    imageName: json['image'] as String?,
-    type: _$enumDecode(_$DoctorCertTypeEnumMap, json['type']),
-  );
-}
+DoctorCertificate _$DoctorCertificateFromJson(Map<String, dynamic> json) =>
+    DoctorCertificate(
+      code: json['code'] as String,
+      name: json['name'] as String,
+      issuer: json['issuer'] as String,
+      issueDate: DateTime.parse(json['issueDate'] as String),
+      expDate: json['expDate'] == null
+          ? null
+          : DateTime.parse(json['expDate'] as String),
+      imageName: json['image'] as String?,
+      type: $enumDecode(_$DoctorCertTypeEnumMap, json['type']),
+    );
 
 Map<String, dynamic> _$DoctorCertificateToJson(DoctorCertificate instance) =>
     <String, dynamic>{
@@ -30,32 +29,6 @@ Map<String, dynamic> _$DoctorCertificateToJson(DoctorCertificate instance) =>
       'image': instance.imageName,
       'type': _$DoctorCertTypeEnumMap[instance.type],
     };
-
-K _$enumDecode<K, V>(
-  Map<K, V> enumValues,
-  Object? source, {
-  K? unknownValue,
-}) {
-  if (source == null) {
-    throw ArgumentError(
-      'A value must be provided. Supported values: '
-      '${enumValues.values.join(', ')}',
-    );
-  }
-
-  return enumValues.entries.singleWhere(
-    (e) => e.value == source,
-    orElse: () {
-      if (unknownValue == null) {
-        throw ArgumentError(
-          '`$source` is not one of the supported values: '
-          '${enumValues.values.join(', ')}',
-        );
-      }
-      return MapEntry(unknownValue, enumValues.values.first);
-    },
-  ).key;
-}
 
 const _$DoctorCertTypeEnumMap = {
   DoctorCertType.personal: 'personal',

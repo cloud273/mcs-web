@@ -6,12 +6,10 @@ part of 'allergy.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Allergy _$AllergyFromJson(Map<String, dynamic> json) {
-  return Allergy(
-    name: json['name'] as String,
-    description: json['description'] as String?,
-  );
-}
+Allergy _$AllergyFromJson(Map<String, dynamic> json) => Allergy(
+      name: json['name'] as String,
+      description: json['description'] as String?,
+    );
 
 Map<String, dynamic> _$AllergyToJson(Allergy instance) => <String, dynamic>{
       'name': instance.name,

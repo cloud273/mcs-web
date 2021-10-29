@@ -1,4 +1,4 @@
-import 'package:clinic/util/utility.dart';
+import 'package:clinic/util/converter.dart';
 
 class DateConverter {
   static String _apiFormat = "yyyy-MM-dd'T'HH:mm:ss";
@@ -6,7 +6,7 @@ class DateConverter {
   static String toDateTimeString({
     required DateTime date,
   }) {
-    return Utility.convertDateTime(date: date.toUtc(), toFormat: _apiFormat) +
+    return Converter.dateTimeToString(date: date.toUtc(), toFormat: _apiFormat) +
         '+00:00';
   }
 }

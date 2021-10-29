@@ -6,19 +6,18 @@ part of 'clinic_certificate.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ClinicCertificate _$ClinicCertificateFromJson(Map<String, dynamic> json) {
-  return ClinicCertificate(
-    code: json['code'] as String,
-    name: json['name'] as String,
-    issuer: json['issuer'] as String,
-    issueDate: DateTime.parse(json['issueDate'] as String),
-    expDate: json['expDate'] == null
-        ? null
-        : DateTime.parse(json['expDate'] as String),
-    imageName: json['image'] as String?,
-    type: _$enumDecode(_$ClinicCertTypeEnumMap, json['type']),
-  );
-}
+ClinicCertificate _$ClinicCertificateFromJson(Map<String, dynamic> json) =>
+    ClinicCertificate(
+      code: json['code'] as String,
+      name: json['name'] as String,
+      issuer: json['issuer'] as String,
+      issueDate: DateTime.parse(json['issueDate'] as String),
+      expDate: json['expDate'] == null
+          ? null
+          : DateTime.parse(json['expDate'] as String),
+      imageName: json['image'] as String?,
+      type: $enumDecode(_$ClinicCertTypeEnumMap, json['type']),
+    );
 
 Map<String, dynamic> _$ClinicCertificateToJson(ClinicCertificate instance) =>
     <String, dynamic>{
@@ -30,32 +29,6 @@ Map<String, dynamic> _$ClinicCertificateToJson(ClinicCertificate instance) =>
       'image': instance.imageName,
       'type': _$ClinicCertTypeEnumMap[instance.type],
     };
-
-K _$enumDecode<K, V>(
-  Map<K, V> enumValues,
-  Object? source, {
-  K? unknownValue,
-}) {
-  if (source == null) {
-    throw ArgumentError(
-      'A value must be provided. Supported values: '
-      '${enumValues.values.join(', ')}',
-    );
-  }
-
-  return enumValues.entries.singleWhere(
-    (e) => e.value == source,
-    orElse: () {
-      if (unknownValue == null) {
-        throw ArgumentError(
-          '`$source` is not one of the supported values: '
-          '${enumValues.values.join(', ')}',
-        );
-      }
-      return MapEntry(unknownValue, enumValues.values.first);
-    },
-  ).key;
-}
 
 const _$ClinicCertTypeEnumMap = {
   ClinicCertType.working: 'working',

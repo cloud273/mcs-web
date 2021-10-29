@@ -4,7 +4,7 @@ import 'package:clinic/model/enum.dart';
 import 'package:clinic/storage/other_storage.dart';
 import 'package:clinic/util/button.dart';
 import 'package:clinic/util/localization.dart';
-import 'package:clinic/util/utility.dart';
+import 'package:clinic/util/converter.dart';
 import 'package:clinic/view/header_widget.dart';
 import 'package:clinic/view/title_label_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -51,9 +51,9 @@ class AppointmentDetailPage extends StatelessWidget {
                 offset,
                 TitleLabelWidget(
                   title: 'Dob'.localized,
-                  text: Utility.convertIso8601DateTimeString(
-                    dateString: _appointment.patient.profile.dob,
-                  )!,
+                  text: Converter.dateTimeToDateString(
+                    date: _appointment.patient.profile.dob,
+                  ),
                 ),
                 offset,
                 TitleLabelWidget(
@@ -70,9 +70,9 @@ class AppointmentDetailPage extends StatelessWidget {
                 offset,
                 TitleLabelWidget(
                   title: 'Dob'.localized,
-                  text: Utility.convertIso8601DateTimeString(
-                    dateString: _appointment.doctor.profile.dob,
-                  )!,
+                  text: Converter.dateTimeToDateString(
+                    date: _appointment.doctor.profile.dob,
+                  ),
                 ),
                 sessionOffset,
                 HeaderWidget(title: 'Appointment_Info'.localized),
@@ -83,7 +83,7 @@ class AppointmentDetailPage extends StatelessWidget {
                 offset,
                 TitleLabelWidget(
                   title: 'Time'.localized,
-                  text: Utility.convertDateTime(date: _appointment.begin),
+                  text: Converter.dateTimeToDateTimeString(date: _appointment.begin),
                 ),
                 offset,
                 TitleLabelWidget(

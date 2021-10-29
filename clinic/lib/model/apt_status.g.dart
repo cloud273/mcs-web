@@ -6,45 +6,17 @@ part of 'apt_status.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-AptStatus _$AptStatusFromJson(Map<String, dynamic> json) {
-  return AptStatus(
-    by: _$enumDecode(_$UserTypeEnumMap, json['by']),
-    value: _$enumDecode(_$AptStatusTypeEnumMap, json['value']),
-    note: json['note'] as String?,
-  );
-}
+AptStatus _$AptStatusFromJson(Map<String, dynamic> json) => AptStatus(
+      by: $enumDecode(_$UserTypeEnumMap, json['by']),
+      value: $enumDecode(_$AptStatusTypeEnumMap, json['value']),
+      note: json['note'] as String?,
+    );
 
 Map<String, dynamic> _$AptStatusToJson(AptStatus instance) => <String, dynamic>{
       'by': _$UserTypeEnumMap[instance.by],
       'value': _$AptStatusTypeEnumMap[instance.value],
       'note': instance.note,
     };
-
-K _$enumDecode<K, V>(
-  Map<K, V> enumValues,
-  Object? source, {
-  K? unknownValue,
-}) {
-  if (source == null) {
-    throw ArgumentError(
-      'A value must be provided. Supported values: '
-      '${enumValues.values.join(', ')}',
-    );
-  }
-
-  return enumValues.entries.singleWhere(
-    (e) => e.value == source,
-    orElse: () {
-      if (unknownValue == null) {
-        throw ArgumentError(
-          '`$source` is not one of the supported values: '
-          '${enumValues.values.join(', ')}',
-        );
-      }
-      return MapEntry(unknownValue, enumValues.values.first);
-    },
-  ).key;
-}
 
 const _$UserTypeEnumMap = {
   UserType.patient: 'patient',

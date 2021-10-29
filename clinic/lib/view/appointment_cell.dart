@@ -1,7 +1,7 @@
 import 'package:clinic/model/appointment.dart';
 import 'package:clinic/model/enum.dart';
 import 'package:clinic/util/localization.dart';
-import 'package:clinic/util/utility.dart';
+import 'package:clinic/util/converter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -37,7 +37,7 @@ class AppointmentCell extends StatelessWidget {
           width: 200,
           child: Text(
             appointment?.begin != null
-                ? Utility.convertDateTime(date: appointment!.begin)
+                ? Converter.dateTimeToDateTimeString(date: appointment!.begin)
                 : 'Time'.localized,
             style: style,
           ),

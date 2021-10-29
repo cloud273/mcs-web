@@ -16,7 +16,7 @@ class Profile {
 
   String lastname;
 
-  String dob;
+  DateTime dob;
 
   Gender gender;
 
