@@ -5,7 +5,7 @@ import 'package:clinic/page/appointment/list_appointment_page.dart';
 import 'package:clinic/page/clinic_page.dart';
 import 'package:clinic/page/history/list_history_appointment_page.dart';
 import 'package:clinic/page/list_doctor_page.dart';
-import 'package:clinic/page/list_schedule_page.dart';
+import 'package:clinic/page/timetable_page.dart';
 import 'package:clinic/page/web/about_us_page.dart';
 import 'package:clinic/page/web/contact_page.dart';
 import 'package:clinic/page/web/faq_page.dart';
@@ -29,7 +29,7 @@ class MainPageState extends State<MainPage> {
         AppMainPage.historyAppointment: ListHistoryAppointmentPage(),
         AppMainPage.clinicInformation: ClinicPage(),
         AppMainPage.doctorInformation: ListDoctorPage(),
-        AppMainPage.scheduleInformation: ListSchedulePage(),
+        AppMainPage.timetableInformation: TimetablePage(),
         AppMainPage.aboutUs: AboutUsPage(),
         AppMainPage.faq: FaqPage(),
         AppMainPage.termCondition: TermConditionPage(),

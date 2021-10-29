@@ -48,8 +48,8 @@ extension AppPageExtension on AppMainPage {
       case AppMainPage.packageInformation:
         result = "Package".localized;
         break;
-      case AppMainPage.scheduleInformation:
-        result = "Schedule".localized;
+      case AppMainPage.timetableInformation:
+        result = "Timetable".localized;
         break;
       case AppMainPage.aboutUs:
         result = 'About_us'.localized;

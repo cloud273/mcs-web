@@ -36,7 +36,7 @@ class MainDrawer extends StatelessWidget {
                 currentPage: page,
               ),
               _Item(
-                thisPage: AppMainPage.scheduleInformation,
+                thisPage: AppMainPage.timetableInformation,
                 currentPage: page,
               ),
               Divider(),

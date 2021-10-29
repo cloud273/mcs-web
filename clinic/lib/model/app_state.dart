@@ -23,7 +23,7 @@ enum AppMainPage {
   doctorInformation,
   clinicInformation,
   packageInformation,
-  scheduleInformation,
+  timetableInformation,
   aboutUs,
   faq,
   termCondition,
