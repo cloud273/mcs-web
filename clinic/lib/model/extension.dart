@@ -1,9 +1,14 @@
+import 'package:clinic/model/address.dart';
 import 'package:clinic/model/allergy.dart';
 import 'package:clinic/model/app_state.dart';
+import 'package:clinic/model/city.dart';
+import 'package:clinic/model/country.dart';
 import 'package:clinic/model/enum.dart';
 import 'package:clinic/model/specialty.dart';
+import 'package:clinic/model/state.dart';
 import 'package:clinic/model/surgery.dart';
 import 'package:clinic/model/symptom.dart';
+import 'package:clinic/storage/other_storage.dart';
 import 'package:clinic/storage/user_storage.dart';
 import 'package:clinic/util/converter.dart';
 import 'package:clinic/util/localization.dart';
@@ -26,6 +31,19 @@ extension AccountTypeExtension on AccountType {
         break;
     }
     return result;
+  }
+}
+
+extension AddressExtension on Address {
+  String get text {
+    try {
+      final countryName = OtherStorage.instance.country(countryCode).name;
+      final stateName = OtherStorage.instance.state(stateCode).name;
+      final cityName = OtherStorage.instance.city(cityCode).name;
+      return '$line, $cityName, $stateName, $countryName';
+    } catch (e) {
+      return '';
+    }
   }
 }
 
@@ -123,6 +141,18 @@ extension AptStatusTypeExtension on AptStatusType {
   }
 }
 
+extension CityExtension on City {
+  String get name {
+    return nameMap[UserStorage.instance.language.code] ?? nameMap['vi']!;
+  }
+}
+
+extension CountryExtension on Country {
+  String get name {
+    return nameMap[UserStorage.instance.language.code] ?? nameMap['vi']!;
+  }
+}
+
 extension DeviceOSExtension on DeviceOS {
   String get api {
     String result;
@@ -184,7 +214,7 @@ extension GenderExtension on Gender {
 }
 
 extension LanguageExtension on Language {
-  String get api {
+  String get code {
     String result;
     switch (this) {
       case Language.english:
@@ -282,7 +312,13 @@ extension PackageTypeExtension on PackageType {
 
 extension SpecialtyExtension on Specialty {
   String get text {
-    return nameMap[UserStorage.instance.language.api]!;
+    return nameMap[UserStorage.instance.language.code]!;
+  }
+}
+
+extension StateExtension on State {
+  String get name {
+    return nameMap[UserStorage.instance.language.code] ?? nameMap['vi']!;
   }
 }
 

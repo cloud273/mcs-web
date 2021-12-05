@@ -24,7 +24,7 @@ void _main() async {
   await OtherStorage.instance.initialize();
   await CustomLocalizationDelegate.instance.initialize(
     supportedLanguages: {'en', 'vi'},
-    defaultLanguage: UserStorage.instance.language.api,
+    defaultLanguage: UserStorage.instance.language.code,
   );
   runZoned(
     () {

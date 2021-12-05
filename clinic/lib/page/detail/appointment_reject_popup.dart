@@ -11,8 +11,8 @@ import 'package:clinic/view/header_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class AppointmentRejectPage extends StatefulWidget {
-  AppointmentRejectPage(
+class AppointmentRejectPopup extends StatefulWidget {
+  AppointmentRejectPopup(
     this._appointment, {
     this.onFinish,
   }) : super();
@@ -21,10 +21,10 @@ class AppointmentRejectPage extends StatefulWidget {
   final Function()? onFinish;
 
   @override
-  AppointmentRejectPageState createState() => AppointmentRejectPageState();
+  AppointmentRejectPopupState createState() => AppointmentRejectPopupState();
 }
 
-class AppointmentRejectPageState extends State<AppointmentRejectPage> {
+class AppointmentRejectPopupState extends State<AppointmentRejectPopup> {
   final _formKey = GlobalKey<FormState>();
 
   late String? _note;

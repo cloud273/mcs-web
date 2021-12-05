@@ -1,8 +1,6 @@
 import 'package:clinic/model/appointment.dart';
 import 'package:clinic/model/apt_status.dart';
 import 'package:clinic/model/enum.dart';
-import 'package:clinic/page/common/appointment_accept_page.dart';
-import 'package:clinic/page/common/appointment_reject_page.dart';
 import 'package:clinic/storage/other_storage.dart';
 import 'package:clinic/util/button.dart';
 import 'package:clinic/util/converter.dart';
@@ -12,6 +10,9 @@ import 'package:clinic/view/title_label_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+
+import './appointment_accept_popup.dart';
+import './appointment_reject_popup.dart';
 
 class AppointmentDetailPage extends StatelessWidget {
   AppointmentDetailPage(
@@ -26,7 +27,7 @@ class AppointmentDetailPage extends StatelessWidget {
     showDialog(
       context: context,
       builder: (context) {
-        return AppointmentAcceptPage(
+        return AppointmentAcceptPopup(
           _appointment,
           onFinish: () {
             if (onStatusChanged != null) {
@@ -43,7 +44,7 @@ class AppointmentDetailPage extends StatelessWidget {
     showDialog(
       context: context,
       builder: (context) {
-        return AppointmentRejectPage(
+        return AppointmentRejectPopup(
           _appointment,
           onFinish: () {
             if (onStatusChanged != null) {
@@ -96,6 +97,11 @@ class AppointmentDetailPage extends StatelessWidget {
                   TitleLabelWidget(
                     title: 'Gender'.localized,
                     text: _appointment.patient.profile.gender.text,
+                  ),
+                  offset,
+                  TitleLabelWidget(
+                    title: 'Address'.localized,
+                    text: _appointment.patient.address!.text,
                   ),
                   sessionOffset,
                   HeaderWidget(title: 'Doctor_info'.localized),

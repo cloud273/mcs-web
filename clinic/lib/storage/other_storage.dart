@@ -2,8 +2,10 @@ import 'dart:convert';
 
 import 'package:clinic/api/common/config_api.dart';
 import 'package:clinic/constant.dart';
+import 'package:clinic/model/city.dart';
 import 'package:clinic/model/country.dart';
 import 'package:clinic/model/specialty.dart';
+import 'package:clinic/model/state.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class OtherStorage {
@@ -116,5 +118,33 @@ class OtherStorage {
 
   Specialty specialty(String code) {
     return _specialties.firstWhere((element) => element.code == code);
+  }
+
+  Country country(String code) {
+    return _countries.firstWhere((element) => element.code == code);
+  }
+
+  State state(String code) {
+    for (Country country in _countries) {
+      for (State state in country.states) {
+        if (state.code == code) {
+          return state;
+        }
+      }
+    }
+    throw Exception('Not found');
+  }
+
+  City city(String code) {
+    for (Country country in _countries) {
+      for (State state in country.states) {
+        for (City city in state.cities) {
+          if (city.code == code) {
+            return city;
+          }
+        }
+      }
+    }
+    throw Exception('Not found');
   }
 }
