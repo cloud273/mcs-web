@@ -10,7 +10,6 @@ import 'package:clinic/storage/other_storage.dart';
 import 'package:clinic/storage/user_storage.dart';
 import 'package:clinic/util/alert.dart';
 import 'package:clinic/view/appointment_cell.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ListAppointmentPage extends StatefulWidget {

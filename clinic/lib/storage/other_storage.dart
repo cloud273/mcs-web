@@ -13,7 +13,7 @@ class OtherStorage {
 
   OtherStorage._init();
 
-  String _configKey = 'config';
+  final String _configKey = 'config';
 
   late List<Country> _countries;
   late List<Specialty> _specialties;
@@ -78,8 +78,8 @@ class OtherStorage {
     if (isUseDefault) {
       _countries = [];
       _specialties = [];
-      _creatableEnd = DefaultCreatableEnd;
-      _acceptableEnd = DefaultAcceptableEnd;
+      _creatableEnd = defaultCreatableEnd;
+      _acceptableEnd = defaultAcceptableEnd;
       _cancelableEnd = DefaultCancelableEnd;
       _rejectableEnd = DefaultRejectableEnd;
       _beginableFrom = DefaultBeginableFrom;

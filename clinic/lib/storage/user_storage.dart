@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class UserStorage {
   static final UserStorage instance = UserStorage._init();
 
-  String _tokenKey = 'token';
+  final String _tokenKey = 'token';
 
   late SharedPreferences _store;
 

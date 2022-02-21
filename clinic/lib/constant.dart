@@ -15,8 +15,8 @@ const FaqUrl = "$Host/support/clinic/faq.html";
 const TermUrl = "$Host/support/clinic/term_condition.html";
 const ContactUrl = "$Host/support/clinic/contact.html";
 
-const int DefaultCreatableEnd = 3600 * (-18);
-const int DefaultAcceptableEnd = 3600 * (-6);
+const int defaultCreatableEnd = 3600 * (-18);
+const int defaultAcceptableEnd = 3600 * (-6);
 const int DefaultCancelableEnd = 3600 * (-6);
 const int DefaultRejectableEnd = 3600 * (-6);
 const int DefaultBeginableFrom = 3600 * (-6);

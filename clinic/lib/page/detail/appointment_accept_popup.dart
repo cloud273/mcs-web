@@ -8,7 +8,6 @@ import 'package:clinic/util/button.dart';
 import 'package:clinic/util/localization.dart';
 import 'package:clinic/util/validator.dart';
 import 'package:clinic/view/header_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AppointmentAcceptPopup extends StatefulWidget {

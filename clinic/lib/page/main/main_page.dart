@@ -14,7 +14,6 @@ import 'package:clinic/storage/user_storage.dart';
 import 'package:clinic/util/button.dart';
 import 'package:clinic/util/localization.dart';
 import 'package:clinic/view/main_drawer.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 

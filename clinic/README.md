@@ -1,6 +1,6 @@
 # clinic
 
-A new Flutter project.
+Mcs project for clinic, doctor, and admin.
 
 ## Getting Started
 

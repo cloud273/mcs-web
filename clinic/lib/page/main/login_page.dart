@@ -5,7 +5,6 @@ import 'package:clinic/util/alert.dart';
 import 'package:clinic/util/button.dart';
 import 'package:clinic/util/localization.dart';
 import 'package:clinic/util/validator.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 

@@ -7,7 +7,6 @@ import 'package:clinic/util/converter.dart';
 import 'package:clinic/util/localization.dart';
 import 'package:clinic/view/header_widget.dart';
 import 'package:clinic/view/title_label_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
