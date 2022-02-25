@@ -13,6 +13,8 @@ import 'package:clinic/view/appointment_cell.dart';
 import 'package:flutter/material.dart';
 
 class ListHistoryAppointmentPage extends StatefulWidget {
+  const ListHistoryAppointmentPage({Key? key}) : super(key: key);
+
   @override
   _ListHistoryAppointmentPageState createState() =>
       _ListHistoryAppointmentPageState();
@@ -25,7 +27,7 @@ class _ListHistoryAppointmentPageState
   void _loadList() async {
     try {
       final today = DateTime.now();
-      final from = today.subtract(Duration(days: 365));
+      final from = today.subtract(const Duration(days: 365));
       final to = today.add(
         Duration(
           seconds: min(
@@ -91,14 +93,23 @@ class _ListHistoryAppointmentPageState
         title: Text(AppMainPage.historyAppointment.text),
       ),
       body: Container(
-        margin: EdgeInsets.all(20),
+        margin: const EdgeInsets.all(20),
         child: ListView.builder(
           itemCount: listAppointment.length + 1,
           itemBuilder: (context, index) {
             final appointment = index > 0 ? listAppointment[index - 1] : null;
             final color = appointment == null
-                ? Color(0xFFEAEAEA)
-                : (index % 2 == 0 ? Color(0xFFF3F3F3) : Color(0xFFFFFFFF));
+                ? const Color(0xFFEAEAEA)
+                : (index % 2 == 0
+                    ? const Color(0xFFF3F3F3)
+                    : const Color(0xFFFFFFFF));
+            return SizedBox(
+              width: 10,
+              height: 100,
+              child: Text(
+                appointment?.patient.profile.fullName ?? 'Code',
+              ),
+            );
             return AppointmentCell(
               appointment: appointment,
               color: color,

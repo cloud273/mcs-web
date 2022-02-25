@@ -18,14 +18,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 class MainPage extends StatefulWidget {
+  const MainPage({Key? key}) : super(key: key);
+
   @override
   MainPageState createState() => MainPageState();
 }
 
 class MainPageState extends State<MainPage> {
   Map<AppMainPage, Widget> get _pageMap => {
-        AppMainPage.activeAppointment: ListAppointmentPage(),
-        AppMainPage.historyAppointment: ListHistoryAppointmentPage(),
+        AppMainPage.activeAppointment: const ListAppointmentPage(),
+        AppMainPage.historyAppointment: const ListHistoryAppointmentPage(),
         AppMainPage.clinicInformation: ClinicPage(),
         AppMainPage.doctorInformation: ListDoctorPage(),
         AppMainPage.timetableInformation: TimetablePage(),
@@ -76,16 +78,16 @@ class MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Container(
+        SizedBox(
           width: 304,
           child: Scaffold(
             appBar: AppBar(
               title: Text("Admin".localized),
             ),
-            body: MainDrawer(),
+            body: const MainDrawer(),
           ),
         ),
-        VerticalDivider(
+        const VerticalDivider(
           width: 1,
           thickness: 1,
         ),

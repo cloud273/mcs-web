@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 class MainDrawer extends StatelessWidget {
+  const MainDrawer({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -28,7 +30,7 @@ class MainDrawer extends StatelessWidget {
                 thisPage: AppMainPage.historyAppointment,
                 currentPage: page,
               ),
-              Divider(
+              const Divider(
                 height: 30,
               ),
               _Item(
@@ -39,7 +41,7 @@ class MainDrawer extends StatelessWidget {
                 thisPage: AppMainPage.timetableInformation,
                 currentPage: page,
               ),
-              Divider(),
+              const Divider(),
               _Item(
                 thisPage: AppMainPage.aboutUs,
                 currentPage: page,
@@ -56,10 +58,10 @@ class MainDrawer extends StatelessWidget {
                 thisPage: AppMainPage.contact,
                 currentPage: page,
               ),
-              Divider(
+              const Divider(
                 height: 30,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               ListTile(

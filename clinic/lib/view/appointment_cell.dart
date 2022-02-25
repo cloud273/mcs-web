@@ -7,25 +7,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 class AppointmentCell extends StatelessWidget {
-  AppointmentCell({
+  const AppointmentCell({
+    Key? key,
     this.appointment,
     this.color,
     this.onTap,
-  }) : super();
+  }) : super(key: key);
 
   final Appointment? appointment;
   final Color? color;
   final Function()? onTap;
 
   Widget _main(BuildContext context) {
-    final offset = SizedBox(width: 40);
+    const offset = SizedBox(width: 40);
     final theme = Theme.of(context);
     final style = theme.textTheme.subtitle1;
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
+        SizedBox(
           width: 80,
           child: Text(
             appointment?.code ?? 'Code'.localized,
@@ -33,8 +34,8 @@ class AppointmentCell extends StatelessWidget {
           ),
         ),
         offset,
-        Container(
-          width: 200,
+        SizedBox(
+          width: 100,
           child: Text(
             appointment?.begin != null
                 ? Converter.dateTimeToDateTimeString(date: appointment!.begin)
@@ -43,7 +44,7 @@ class AppointmentCell extends StatelessWidget {
           ),
         ),
         offset,
-        Container(
+        SizedBox(
           width: 50,
           child: Text(
             appointment?.order.toString() ?? 'Order'.localized,
@@ -51,7 +52,7 @@ class AppointmentCell extends StatelessWidget {
           ),
         ),
         offset,
-        Container(
+        SizedBox(
           width: 100,
           child: Text(
             appointment?.specialty.text ?? 'Specialty'.localized,
@@ -59,7 +60,7 @@ class AppointmentCell extends StatelessWidget {
           ),
         ),
         offset,
-        Container(
+        SizedBox(
           width: 120,
           child: Text(
             appointment?.type.text ?? 'Package'.localized,
@@ -67,15 +68,15 @@ class AppointmentCell extends StatelessWidget {
           ),
         ),
         offset,
-        Container(
-          width: 175,
+        SizedBox(
+          width: 200,
           child: Text(
             appointment?.patient.profile.fullName ?? 'Patient'.localized,
             style: style,
           ),
         ),
         offset,
-        Container(
+        SizedBox(
           width: 175,
           child: Text(
             appointment?.doctor.profile.fullName ?? 'Doctor'.localized,
@@ -83,7 +84,7 @@ class AppointmentCell extends StatelessWidget {
           ),
         ),
         offset,
-        Container(
+        SizedBox(
           width: 100,
           child: Text(
             appointment?.status.value.text ?? 'Status'.localized,
@@ -99,14 +100,14 @@ class AppointmentCell extends StatelessWidget {
   Widget build(BuildContext context) {
     if (appointment == null) {
       return Container(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         color: color,
         child: _main(context),
       );
     } else {
       return InkWell(
         child: Container(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           color: color,
           child: Observer(
             builder: (context) {

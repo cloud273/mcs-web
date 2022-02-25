@@ -13,13 +13,14 @@ import 'package:clinic/view/appointment_cell.dart';
 import 'package:flutter/material.dart';
 
 class ListAppointmentPage extends StatefulWidget {
+  const ListAppointmentPage({Key? key}) : super(key: key);
+
   @override
   _ListAppointmentPageState createState() => _ListAppointmentPageState();
 }
 
 class _ListAppointmentPageState extends State<ListAppointmentPage> {
   List<Appointment> listAppointment = [];
-
   void _loadList() async {
     try {
       final today = DateTime.now();
@@ -34,7 +35,7 @@ class _ListAppointmentPageState extends State<ListAppointmentPage> {
           ),
         ),
       );
-      final to = today.add(Duration(days: 30));
+      final to = today.add(const Duration(days: 30));
       final appointments = await ClinicListAppointmentApi(
         token: UserStorage.instance.token!,
         type: null,
@@ -100,14 +101,16 @@ class _ListAppointmentPageState extends State<ListAppointmentPage> {
         title: Text(AppMainPage.activeAppointment.text),
       ),
       body: Container(
-        margin: EdgeInsets.all(20),
+        margin: const EdgeInsets.all(20),
         child: ListView.builder(
           itemCount: listAppointment.length + 1,
           itemBuilder: (context, index) {
             final appointment = index > 0 ? listAppointment[index - 1] : null;
             final color = appointment == null
-                ? Color(0xFFEAEAEA)
-                : (index % 2 == 0 ? Color(0xFFF3F3F3) : Color(0xFFFFFFFF));
+                ? const Color(0xFFEAEAEA)
+                : (index % 2 == 0
+                    ? const Color(0xFFF3F3F3)
+                    : const Color(0xFFFFFFFF));
             return AppointmentCell(
               appointment: appointment,
               color: color,

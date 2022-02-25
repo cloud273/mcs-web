@@ -1,8 +1,7 @@
 import 'package:intl/intl.dart';
 
 class Converter {
-
-  static String dateTimeFormat = 'MMM, dd yyyy, hh:mm:ss a';
+  static String dateTimeFormat = 'MMM, dd yyyy hh:mm:ss a';
 
   static String dateFormat = 'MMM, dd yyyy';
 
@@ -31,7 +30,11 @@ class Converter {
     required DateTime date,
     String? locale,
   }) {
-    return dateTimeToString(date: date, toFormat: dateTimeFormat, locale: locale,);
+    return dateTimeToString(
+      date: date,
+      toFormat: dateTimeFormat,
+      locale: locale,
+    );
   }
 
   static String dateTimeStringToString({
@@ -40,21 +43,33 @@ class Converter {
     String? locale,
   }) {
     DateTime dateTime = parseDateTimeString(dateString)!;
-    return dateTimeToString(date: dateTime, toFormat: toFormat, locale: locale,);
+    return dateTimeToString(
+      date: dateTime,
+      toFormat: toFormat,
+      locale: locale,
+    );
   }
 
   static String dateTimeStringToDateTimeString({
     required String dateString,
     String? locale,
   }) {
-    return dateTimeStringToString(dateString: dateString, toFormat: dateTimeFormat, locale: locale,);
+    return dateTimeStringToString(
+      dateString: dateString,
+      toFormat: dateTimeFormat,
+      locale: locale,
+    );
   }
 
   static String dateTimeStringToDateString({
     required String dateString,
     String? locale,
   }) {
-    return dateTimeStringToString(dateString: dateString, toFormat: dateFormat, locale: locale,);
+    return dateTimeStringToString(
+      dateString: dateString,
+      toFormat: dateFormat,
+      locale: locale,
+    );
   }
 
   static String byteToString(int byte) {
