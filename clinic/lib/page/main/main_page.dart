@@ -5,6 +5,7 @@ import 'package:clinic/page/appointment/list_appointment_page.dart';
 import 'package:clinic/page/clinic_page.dart';
 import 'package:clinic/page/history/list_history_appointment_page.dart';
 import 'package:clinic/page/list_doctor_page.dart';
+import 'package:clinic/page/menu/main_drawer.dart';
 import 'package:clinic/page/timetable_page.dart';
 import 'package:clinic/page/web/about_us_page.dart';
 import 'package:clinic/page/web/contact_page.dart';
@@ -13,7 +14,6 @@ import 'package:clinic/page/web/term_condition_page.dart';
 import 'package:clinic/storage/user_storage.dart';
 import 'package:clinic/util/button.dart';
 import 'package:clinic/util/localization.dart';
-import 'package:clinic/view/main_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 

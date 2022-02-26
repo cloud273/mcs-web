@@ -103,13 +103,6 @@ class _ListHistoryAppointmentPageState
                 : (index % 2 == 0
                     ? const Color(0xFFF3F3F3)
                     : const Color(0xFFFFFFFF));
-            return SizedBox(
-              width: 10,
-              height: 100,
-              child: Text(
-                appointment?.patient.profile.fullName ?? 'Code',
-              ),
-            );
             return AppointmentCell(
               appointment: appointment,
               color: color,

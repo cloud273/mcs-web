@@ -40,9 +40,9 @@ class _ApplicationWidget extends StatelessWidget {
       title: 'Cloud273',
       home: Observer(builder: (context) {
         if (AppState.instance.isLogged) {
-          return MainPage();
+          return const MainPage();
         } else {
-          return LoginPage();
+          return const LoginPage();
         }
       }),
     );
