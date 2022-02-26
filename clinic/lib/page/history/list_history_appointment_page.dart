@@ -22,6 +22,7 @@ class ListHistoryAppointmentPage extends StatefulWidget {
 
 class _ListHistoryAppointmentPageState
     extends State<ListHistoryAppointmentPage> {
+  final _scrollController = ScrollController();
   List<Appointment> listAppointment = [];
 
   void _loadList() async {
@@ -95,6 +96,7 @@ class _ListHistoryAppointmentPageState
       body: Container(
         margin: const EdgeInsets.all(20),
         child: ListView.builder(
+          controller: _scrollController,
           itemCount: listAppointment.length + 1,
           itemBuilder: (context, index) {
             final appointment = index > 0 ? listAppointment[index - 1] : null;
