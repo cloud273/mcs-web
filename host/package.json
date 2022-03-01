@@ -1,0 +1,15 @@
+{
+    "name": "http",
+    "version": "1.0.0",
+    "description": "",
+    "main": "main.js",
+    "scripts": {
+        "start": "node ./main.js"
+    },
+    "author": "dungnguyen27384@gmail.com",
+    "license": "DUNGNGUYEN",
+    "dependencies": {
+        "express": "^4.17.1",
+        "npm": "^7.24.1"
+    }
+}
